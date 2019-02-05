@@ -7,9 +7,73 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <%= favicon_link_tag('favicon.ico') %>
   </head>
 
   <body>
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-1">
+            <label> <%= link_to image_tag('otokomeshi.png', size: '90x90'), root_path %>
+                    </label>
+          </div>
+          <div class="col-md-5">
+             <label class="logo-text"> <%= link_to image_tag('otoko-title.jpg', size: '200x20'), root_path %>
+                    </label>
+                  </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-5">
+            <div class="header-nav">
+
+            <% if user_signed_in? %>
+              <span class="btn btn-danger"> <%= link_to 'トップ', root_path, 
+              :style => "color: white; text-decoration: none;" %></span>
+              <span class="btn btn-danger"> <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, :style => "color: white; text-decoration: none;" %>
+                     </span>
+              <label>退会</label>
+                <% if current_user.try(:admin?) %>
+                  <span class="btn btn-danger"> <%= link_to "管理画面", "/admin", 
+                  :style => "color: white; text-decoration: none;" %></span>
+                <% end %>
+
+             <% else %>
+
+              <span> <%= link_to 'TOP', root_path %></span>
+              <span> <%= link_to '新規登録', new_user_registration_path %></span>
+              <span> <%= link_to 'ログイン', new_user_session_path %></span>
+
+            <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-7"></div>
+            <div class="col-md-5">
+              <input class="header-search">
+              <input type="submit" value="検索" class="header-search2">
+            </div>
+        </div>
+      </div>
+    </header>
+
+      <% if user_signed_in? %>
+        <nav>
+          <ul>
+            <li>レシピ投稿</li>
+            <li>お気に入り一覧</li>
+            <li>マイページ</li>
+          </ul>
+        </nav>
+      <% end %>
+
     <%= yield %>
+
+    <footer class="footer">
+      <p class="footer-2">Copyright © 2019 Otokomeshi All Rights Reserved.</p>
+    </footer>
+
   </body>
 </html>
