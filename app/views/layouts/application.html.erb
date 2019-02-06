@@ -33,7 +33,7 @@
               :style => "color: white; text-decoration: none;" %></span>
               <span class="btn btn-danger"> <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, :style => "color: white; text-decoration: none;" %>
                      </span>
-              <label>退会</label>
+              <span>退会</span>
                 <% if current_user.try(:admin?) %>
                   <span class="btn btn-danger"> <%= link_to "管理画面", "/admin", 
                   :style => "color: white; text-decoration: none;" %></span>
@@ -62,7 +62,7 @@
       <% if user_signed_in? %>
         <nav>
           <ul>
-            <li>レシピ投稿</li>
+            <li> <%= link_to 'レシピ投稿', new_recipe_path %></li>
             <li>お気に入り一覧</li>
             <li>マイページ</li>
           </ul>
@@ -71,8 +71,8 @@
 
     <%= yield %>
 
-    <footer class="footer">
-      <p class="footer-2">Copyright © 2019 Otokomeshi All Rights Reserved.</p>
+    <footer>
+      <p>Copyright © 2019 Otokomeshi All Rights Reserved.</p>
     </footer>
 
   </body>
