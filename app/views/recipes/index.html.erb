@@ -1,9 +1,11 @@
-
-<% @recipes.each do |recipe| %>
-
-<p> <%= recipe.title %></p>
-<p> <%= attachment_image_tag recipe, :image, format: 'jpg', fallback: 'noimage.jpg', size: '150x150' %></p>
-<p> <%= recipe.user.name %></p>
-
-
-<% end %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+		<% @recipes.each do |recipe| %>
+			<p> <%= recipe.title %></p>
+			<p> <%= attachment_image_tag recipe, :image, format: 'jpg', fallback: 'noimage.jpg', size: '150x150' %></p>
+			<p> <%= recipe.user.name %></p>
+		<% end %>
+		</div>
+	</div>
+</div>

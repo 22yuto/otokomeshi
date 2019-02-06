@@ -21,5 +21,9 @@
 <p> 材料</p>
 <%= f.text_area :material %>
 
+<%= f.fields_for :orders do |a| %>
+<%= a.text_field :order_body %>
+<% end %>
+
 <%= f.submit '次へ' %>
 <% end %>
