@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_05_095522) do
+ActiveRecord::Schema.define(version: 2019_02_06_125842) do
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "recipe_id"
+    t.string "order_image"
+    t.integer "order_num"
+    t.text "order_body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "recipes", force: :cascade do |t|
     t.integer "user_id"
