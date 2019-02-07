@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
+  get 'relationships/create'
+  get 'relationships/destroy'
  root 'recipes#index'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
 
-  resources :users
+  resources :users do
+    resource :relationships, only: [:create, :destroy]
+  end
 
   resources :recipes do
     resources :favorites, only:[:create,:destroy]

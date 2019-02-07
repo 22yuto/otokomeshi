@@ -9,7 +9,7 @@
 		<p>内容: <%= @recipe.body %></p>
 		<p>調理時間: <%= @recipe.time %></p>
 		<p>コスト: <%= @recipe.cost %></p>
-		<p>投稿した人: <%= link_to @recipe.user.name, user_path %></p>
+		<p>投稿した人: <%= link_to @recipe.user.name, user_path(@recipe.user_id) %></p>
 		</div>
 	</div>
 	<div class="row">

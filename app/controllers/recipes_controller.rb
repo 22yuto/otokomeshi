@@ -17,7 +17,8 @@ class RecipesController < ApplicationController
   end
 
   def index
-  	@recipes = Recipe.where(user_id: current_user.id).page(params[:page]).reverse_order
+  	# @recipes = Recipe.where(user_id: current_user.id).page(params[:page]).reverse_order
+    @recipes = Recipe.page(params[:page]).reverse_order
   end
 
   def show
