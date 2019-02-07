@@ -1,0 +1,12 @@
+<div class="container">
+	<div class="row">
+		<% @favo.each do |favorite| %>
+		<div class="col-md-4">
+		<%= favorite.recipe.title %>
+		<%= attachment_image_tag favorite.recipe.image, :image, format: 'jpg', fallback: 'noimage.jpg', size: '150x150' %>
+		<%= link_to "お気に入り解除", recipe_favorite_path(favorite.recipe, favorite), method: :delete %>
+		</div>
+<% end %>
+</div>
+</div>
+

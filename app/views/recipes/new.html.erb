@@ -1,29 +1,38 @@
+<div class="container">
+	<div class="row">
+		<h3> レシピ投稿</h3></div></br>
 
-<h2> レシピ投稿</h2>
+		<%= form_for @recipe, :url => { :controller => :recipes, :action => :create } do |f| %>
 
-<%= form_for @recipe, :url => { :controller => :recipes, :action => :create } do |f| %>
+		<p> レシピタイトル</p>
+		<%= f.text_field :title %>
 
-<p> レシピタイトル</p>
-<%= f.text_field :title %>
+		<p> レシピイメージ</p>
+		<%= f.attachment_field :image %>
 
-<p> レシピイメージ</p>
-<%= f.attachment_field :image %>
+		<p> レシピコメント</p>
+		<%= f.text_area :body %>
 
-<p> レシピコメント</p>
-<%= f.text_area :body %>
+		<p> 調理時間</p>
+		<%= f.text_field :time %>
 
-<p> 調理時間</p>
-<%= f.text_field :time %>
+		<p> コスト</p>
+		<%= f.text_field :cost %>
 
-<p> コスト</p>
-<%= f.text_field :cost %>
+		<p> 材料</p>
+		<%= f.text_area :material %>
 
-<p> 材料</p>
-<%= f.text_area :material %>
+		<%= f.fields_for :orders do |a| %>
 
-<%= f.fields_for :orders do |a| %>
-<%= a.text_field :order_body %>
-<% end %>
+		<p>手順 <%= a.number_field :order_num, min:1, max:100 %></p>
 
-<%= f.submit '次へ' %>
-<% end %>
+		<p> イメージ <%= a.file_field :order_image %></p>
+
+		<p>作り方</p>
+		<%= a.text_area :order_body %>
+		<% end %>
+
+		<%= f.submit '次へ' %>
+		<% end %>
+	</div>
+</div>

@@ -1,7 +1,21 @@
 
-<%= @recipe.title %>
-<%= attachment_image_tag @recipe, :image, fallback: 'noimage.jpg', size: '150x150' %>
-<%= @recipe.body %>
-<%= @recipe.time %>
-<%= @recipe.cost %>
-<%= @recipe.user.name %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+		<p>レシピタイトル: <%= @recipe.title %></p>
+		<%= attachment_image_tag @recipe, :image, fallback: 'noimage.jpg', size: '150x150' %>
+		</div>
+		<div class="col-md-8">
+		<p>内容: <%= @recipe.body %></p>
+		<p>調理時間: <%= @recipe.time %></p>
+		<p>コスト: <%= @recipe.cost %></p>
+		<p>投稿した人: <%= link_to @recipe.user.name, user_path %></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-10"></div>
+		<div class="col-md-2">
+		<%= link_to "お気に入りに追加", recipe_favorites_path(@recipe.id), method: :post %>
+	</div>
+	</div>
+</div>

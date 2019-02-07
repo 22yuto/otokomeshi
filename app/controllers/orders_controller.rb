@@ -1,4 +1,5 @@
-class OdersController < ApplicationController
+class OrdersController < ApplicationController
+  
 
 
   def new
@@ -18,4 +19,5 @@ class OdersController < ApplicationController
   def order_params
       params.require(:order).permit(:order_image, :order_num, :order_body)
   end
+
 end
