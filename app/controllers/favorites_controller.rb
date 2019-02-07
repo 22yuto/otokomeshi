@@ -1,5 +1,6 @@
 class FavoritesController < ApplicationController
 
+	before_action :authenticate_user!
 
 	def index
 		# favo = Favorite.where(user_id: current_user.id)
