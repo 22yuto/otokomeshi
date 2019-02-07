@@ -1,0 +1,42 @@
+<div class="container">
+<h3>マイページ</h3>
+	<div class="row">
+		<div class="col-md-3">
+			<%= image_tag @user.profile_image.to_s, size: '150x150' %>
+		</div>
+		<div class="col-md-6">
+			<p>ニックネーム: <%= @user.name %></p>
+
+			<p>メール: <%= @user.email %></p>
+		</div>
+		<div class="col-md-3">
+			<span class="btn btn-danger"> <%= link_to '編集', edit_user_path(@user.id), :style => "color: white; text-decoration: none;" %>
+			</span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-9">
+		<p>ひとこと: <%= @user.introduction %></p>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<h2>レシピ一覧</h2>
+		<% @recipes.each do |recipe| %>
+			<div class="col-md-4">
+				<%= link_to recipe_path(recipe.id) do %>
+				<p><%= recipe.title %></p>
+				<%= attachment_image_tag recipe, :image, format: 'jpg', fallback: 'noimage.jpg', size: '75x75' %></br></br>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+</div>
+
+
+
+
+
+

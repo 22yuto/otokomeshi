@@ -1,0 +1,22 @@
+<div class="container">
+<h3>マイページ編集</h3>
+	<div class="row">
+		<%= form_for(@user) do |f| %>
+			<div class="col-md-3">
+				<p> プロフィール画像</p>
+				<%= f.file_field :profile_image %>
+			</div>
+			<div class="col-md-6">
+				<p> ニックネーム</p>
+				<%= f.text_field :name %>
+				<p> メール</p>
+				<%= f.email_field :email %>
+			</div>
+			<p> ひとこと</p>
+			<%= f.text_area :introduction %>
+			<div class="col-md-3">
+				<%= f.submit '保存' %>
+			</div>
+		<% end %>
+	</div>
+</div>

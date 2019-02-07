@@ -10,14 +10,14 @@ class RecipesController < ApplicationController
   	@recipe = Recipe.new(recipe_params)
   	@recipe.user_id = current_user.id
   	if @recipe.save
-  	   redirect_to new_recipe_order_path(@recipe.id)
+  	   redirect_to root_path
   	else
   	   render 'new'
   	end
   end
 
   def index
-  	@recipes = Recipe.page(params[:page]).reverse_order
+  	@recipes = Recipe.where(user_id: current_user.id).page(params[:page]).reverse_order
   end
 
   def show
@@ -32,7 +32,7 @@ class RecipesController < ApplicationController
 
   def recipe_params
       params.require(:recipe).permit(:title, :image, :body, :time, :cost, :material, :quantity,
-      	 orders_attributes: [:id, :order_num, :order_image, :order_body])
+      	 orders_attributes: [:id, :order_num, :order_image, :order_body, :image])
   end
 
 
