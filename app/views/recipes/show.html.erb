@@ -1,2 +1,7 @@
-<h1>Recipes#show</h1>
-<p>Find me in app/views/recipes/show.html.erb</p>
+
+<%= @recipe.title %>
+<%= attachment_image_tag @recipe, :image, fallback: 'noimage.jpg', size: '150x150' %>
+<%= @recipe.body %>
+<%= @recipe.time %>
+<%= @recipe.cost %>
+<%= @recipe.user.name %>
