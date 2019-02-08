@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users do
-    resource :relationships, only: [:create, :destroy]
+    resource :relationships, only:[:create, :destroy]
     member do
       get :follows, :followers
     end
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     
 
   resources :recipes do
+    resources :comments, only:[:create, :destroy]
     resources :favorites, only:[:create,:destroy]
     resources :orders
   end
