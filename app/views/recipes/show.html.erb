@@ -13,9 +13,12 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-10"></div>
-		<div class="col-md-2">
-		<%= link_to "お気に入りに追加", recipe_favorites_path(@recipe.id), method: :post %>
+		<div class="col-md-8"></div>
+		<div class="col-md-4">
+		<p class="btn btn-default">
+		<%= link_to "お気に入りに追加", recipe_favorites_path(@recipe.id), method: :post, 
+		:style => "text-decoration: none;" %>
+		</p>
 	</div>
 	</div>
 </div>

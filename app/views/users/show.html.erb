@@ -1,15 +1,3 @@
-	
-	
-	<% if current_user != @user %>
-	    <% if @user.followed_by?(current_user) %>
-	        <p><%=link_to "フォロー解除", user_relationships_path(@user.id), method: :delete %></p>
-	    <% else %>
-	        <p><%=link_to "フォローする", user_relationships_path(@user.id), method: :post %></p>
-	    <% end %>
-	<% end %>
-
-
-
 <div class="container">
 <% if @user.id == current_user.id %>
 	<h3>マイページ</h3>
@@ -18,26 +6,37 @@
 <% end %>
 	<div class="row">
 		<div class="col-md-3">
-			<%= image_tag @user.profile_image.to_s, size: '150x150' %>
+			<%= image_tag @user.profile_image.to_s, size: '150x150', :style => "border-radius: 5%;" %>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-5">
 			<p>ニックネーム: <%= @user.name %></p>
-
 			<p>メール: <%= @user.email %></p>
-			<p><%=link_to "フォロー", follows_user_path(@user.id) %></p>
-			<p><%=link_to "フォロワー", followers_user_path(@user.id) %></p>
+			<p>ひとこと: <%= @user.introduction %></p>
+<!-- フォローボタン -->
+			<span class="btn btn-primary btn-sm"><%=link_to "フォロー", follows_user_path(@user.id),
+			 :style => "color: white; text-decoration: none;" %>
+			   <%= @user.followings.count %></span>
+			<span class="btn btn-primary btn-sm"><%=link_to "フォロワー", followers_user_path(@user.id), :style => "color: white; text-decoration: none;" %>
+			   <%= @user.followers.count %></span>
+<!-- ------------- -->
+<!-- フォロー追加解除 -->
+		<% if current_user != @user %>
+	    	<% if @user.followed_by?(current_user) %>
+	        	<p class="btn btn-danger btn-sm">
+	        		<%=link_to "フォロー解除", user_relationships_path(@user.id), method: :delete, "data-confirm" => 'フォロー解除しますか？', :style => "color: white; text-decoration: none;" %></p>
+	    	<% else %>
+	        	<p class="btn btn-default btn-sm">
+	        	<%=link_to "フォローする", user_relationships_path(@user.id), method: :post,
+	        	 :style => "text-decoration: none;" %></p>
+	    	<% end %>
+		<% end %>
+<!-- ------------- -->
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-4">
 			<% if @user.id == current_user.id %>
 			<span class="btn btn-danger"> <%= link_to '編集', edit_user_path(@user.id), :style => "color: white; text-decoration: none;" %>
 			</span>
 			<% end %>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-3"></div>
-		<div class="col-md-9">
-		<p>ひとこと: <%= @user.introduction %></p>
 		</div>
 	</div>
 </div>
