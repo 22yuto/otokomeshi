@@ -1,5 +1,21 @@
+	
+	
+	<% if current_user != @user %>
+	    <% if @user.followed_by?(current_user) %>
+	        <p><%=link_to "フォロー解除", user_relationships_path(@user.id), method: :delete %></p>
+	    <% else %>
+	        <p><%=link_to "フォローする", user_relationships_path(@user.id), method: :post %></p>
+	    <% end %>
+	<% end %>
+
+
+
 <div class="container">
-<h3>マイページ</h3>
+<% if @user.id == current_user.id %>
+	<h3>マイページ</h3>
+	<% else %>
+	<h3>ユーザーページ</h3>
+<% end %>
 	<div class="row">
 		<div class="col-md-3">
 			<%= image_tag @user.profile_image.to_s, size: '150x150' %>
@@ -8,10 +24,14 @@
 			<p>ニックネーム: <%= @user.name %></p>
 
 			<p>メール: <%= @user.email %></p>
+			<p><%=link_to "フォロー", follows_user_path(@user.id) %></p>
+			<p><%=link_to "フォロワー", followers_user_path(@user.id) %></p>
 		</div>
 		<div class="col-md-3">
+			<% if @user.id == current_user.id %>
 			<span class="btn btn-danger"> <%= link_to '編集', edit_user_path(@user.id), :style => "color: white; text-decoration: none;" %>
 			</span>
+			<% end %>
 		</div>
 	</div>
 	<div class="row">

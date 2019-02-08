@@ -1,0 +1,17 @@
+<h2>フォローリスト</h2>
+
+<% @users.each do |user| %>
+  <hr>
+  <%= link_to user_path(user.id) do %>
+  <p> <%= user.name %></p>
+  <p> <%= image_tag user.profile_image.to_s, size: '80x80' %></p>
+  <% end %>
+    <% if current_user != user %>
+        <% if user.followed_by?(current_user) %>
+            <p><%=link_to "フォロー解除", user_relationships_path(user.id), method: :delete,
+             "data-confirm" => 'フォロー解除しますか？' %></p>
+        <% else %>
+            <p><%=link_to "フォローする", user_relationships_path(user.id), method: :post %></p>
+        <% end %>
+    <% end %>
+<% end %>
