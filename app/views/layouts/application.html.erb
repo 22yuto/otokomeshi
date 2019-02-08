@@ -50,7 +50,11 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-7"></div>
+          <div class="col-md-7">
+            <% if flash[:notice] %>
+            <%= flash[:notice] %>
+            <% end %>
+          </div>
             <div class="col-md-5">
               <input class="header-search">
               <input type="submit" value="検索" class="header-search2">
