@@ -78,6 +78,40 @@ footer {
 	color: #aaaaaa;
 }
 
+/* 検索ボックス */
+.searchbox{
+  position: relative;
+  width: 400px;
+  background-color:#fff;
+  border:1px solid #aaa;
+  border-radius:6px;
+}
+
+.searchbox span input{
+  width:70%;
+  height:40px;
+  line-height:40px;
+  background:none;
+  border:none;
+}
+.searchbox label {
+  position: absolute;
+  width: 30%;
+}
+
+.search-btn{
+  background:#777777;
+  width:100%;
+  height:40px;
+  line-height:40px;
+  border-radius: 6px;
+  color:#FFF;
+}
+
+.search-btn:hover {
+  background:#cccccc;
+}
+
 
 
 
