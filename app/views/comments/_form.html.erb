@@ -1,6 +1,7 @@
 <%= form_with(model: [recipe, comment] ) do |form| %>
   <div>
-    <%= form.text_area :content %>
+  </br>
+    <%= form.text_area :content, size: "130x5" %>
   </div>
   <div class="actions">
     <%= form.submit "コメントをする" %>
