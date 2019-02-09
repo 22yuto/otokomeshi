@@ -1,7 +1,6 @@
-
 <div class="container">
 	<div class="row">
-		<% @recipes.each do |recipe| %>
+		<% @search_recipes.each do |recipe| %>
 		<div class="col-md-4">
 			<%= link_to recipe_path(recipe.id) do %>
 				<p> <%= recipe.title %></p>

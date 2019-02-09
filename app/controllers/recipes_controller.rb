@@ -21,6 +21,10 @@ class RecipesController < ApplicationController
     @recipes = Recipe.page(params[:page]).reverse_order
   end
 
+  def search
+    @recipes = Recipe.page(params[:page]).reverse_order
+  end
+
   def show
   	@recipe = Recipe.find(params[:id])
     @comment = Comment.new
@@ -29,6 +33,7 @@ class RecipesController < ApplicationController
 
   def edit
   end
+
 
 
   private

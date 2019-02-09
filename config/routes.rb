@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'relationships/create'
-  get 'relationships/destroy'
  root 'recipes#index'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
@@ -20,7 +18,7 @@ Rails.application.routes.draw do
     resources :orders
   end
   get '/myfavorites' => 'favorites#index', as: 'myfavorites'
-
+  get '/searchs' => 'recipes#search', as: 'searchs'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
