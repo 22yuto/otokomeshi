@@ -1,9 +1,13 @@
 <% comments.each do |comment| %>
   <% unless comment.id.nil? %>
-    <p><%= link_to comment.user.name, user_path(comment.user.id) %></p>
-    <p>コメント：<%= comment.content %></p>
+    <%= link_to user_path(comment.user.id) do %>
+	    <p> <%= image_tag comment.user.profile_image.to_s, fallback: "no-image-people.png", size: "50x50", :style => "border-radius: 50%;" %></p>
+    <% end %>
+    	<p>コメント：<%= comment.content %></p>
     <% if comment.user == current_user %>
-      <p><%= link_to 'コメントを削除する', recipe_comment_path(comment.recipe_id, comment.id), method: :delete, remote: true %></p>
+      <p class="btn btn-danger btn-xs"><%= link_to 'コメントを削除する', recipe_comment_path(comment.recipe_id, comment.id), method: :delete, 
+      		"data-confirm" => 'コメントを削除しますか？', 
+      		 :style => "color: white; text-decoration: none;", remote: true %></p>
     <% end %>
   <% end %>
 <% end %>

@@ -2,7 +2,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-4">
-		<p>レシピタイトル: <%= @recipe.title %></p>
+		<p> <%= @recipe.title %></p>
 		<%= attachment_image_tag @recipe, :image, fallback: 'noimage.jpg', size: '150x150' %>
 		</div>
 		<div class="col-md-8">
@@ -23,14 +23,21 @@
 	</div>
 </div>
 
-<div>
-    <h4>コメント</h4>
-    <div id="comments_area"><!-- #① -->
-      <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
-      <%= render partial: 'comments/index', locals: { comments: @comments } %>
-    </div>  
-    <% if user_signed_in? %>
-      <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
-      <%= render partial: 'comments/form', locals: { comment: @comment, recipe: @recipe } %>
-    <% end %>
+<!-- コメント機能 -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+		<div>
+		    <h4>コメント</h4>
+		    <div id="comments_area"><!-- #① -->
+		      <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
+		      <%= render partial: 'comments/index', locals: { comments: @comments } %>
+		    </div>  
+		    <% if user_signed_in? %>
+		      <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
+		      <%= render partial: 'comments/form', locals: { comment: @comment, recipe: @recipe } %>
+		    <% end %>
+		</div>
+		</div>
+	</div>
 </div>
