@@ -1,13 +1,14 @@
-<div class="container">
-	<h2>フォロワー</h2>
-		<div class="row">
-		<% @users.each do |user| %>
-		<div class="col-md-4">
-		  <%= link_to user_path(user.id) do %>
-		  <p> <%= user.name %></p>
-		  <p> <%= image_tag user.profile_image.to_s, size: '80x80', :style => "border-radius: 5%;" %></p>
-		  <% end %>
-		    <% if current_user != user %>
+
+	<div class="panel panel-primary">
+	<div class="panel-heading">フォロワー</div>
+		<div class="panel-body">
+			<% @users.each do |user| %>
+			<div class="border-bottom"> <!-- なぜかこれ入れると二段目以降のずれ治る -->
+		  		<%= link_to user_path(user.id) do %>
+				  <p> <%= user.name %></p>
+				  <p> <%= image_tag user.profile_image.to_s, size: '80x80', :style => "border-radius: 5%;" %></p>
+		  		<% end %>
+		    	<% if current_user != user %>
 		        <% if user.followed_by?(current_user) %>
 		            <p class="btn btn-danger btn-xs">
 		            	<%=link_to "フォロー解除", user_relationships_path(user.id), method: :delete, "data-confirm" => 'フォロー解除しますか？', 
@@ -16,8 +17,8 @@
 		            <p class="btn btn-default btn-xs">
 		            	<%=link_to "フォローする", user_relationships_path(user.id), method: :post, :style => "text-decoration: none;" %></p>
 		        <% end %>
-		    <% end %>
+		    	<% end %>
+		    </div>
+			<% end %>
 		</div>
-		<% end %>
 	</div>
-</div>

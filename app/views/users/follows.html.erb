@@ -1,8 +1,8 @@
-<div class="container">
-	<h2>フォロー</h2>
-		<div class="row">
+<div class="panel panel-primary">
+	<div class="panel-heading">フォロー</div>
+		<div class="panel-body">
 		<% @users.each do |user| %>
-		<div class="col-md-4">
+		<div class="border-bottom"> <!-- なぜかこれ入れると二段目以降のずれ治る -->
 		  <%= link_to user_path(user.id) do %>
 		  <p> <%= user.name %></p>
 		  <p> <%= image_tag user.profile_image.to_s, size: '80x80', :style => "border-radius: 5%;" %></p>
@@ -19,5 +19,5 @@
 		    <% end %>
 		</div>
 		<% end %>
-	</div>
+		</div>
 </div>
