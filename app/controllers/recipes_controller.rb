@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
 
+impressionist :actions=> [:show]
 
   def new
   	@recipe = Recipe.new
@@ -28,6 +29,7 @@ class RecipesController < ApplicationController
 
   def show
   	@recipe = Recipe.find(params[:id])
+    impressionist(@recipe, nil, unique: [:session_hash])
     @comment = Comment.new
     @comments = @recipe.comments
   end
