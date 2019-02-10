@@ -1,9 +1,9 @@
-
 <div class="container">
 	<div class="row">
 		<div class="col-md-4">
 		<p> <%= @recipe.title %></p>
 		<%= attachment_image_tag @recipe, :image, fallback: 'noimage.jpg', size: '150x150' %>
+		<p>閲覧数: <%= @recipe.impressionist_count %></p>
 		</div>
 		<div class="col-md-8">
 		<p>内容: <%= @recipe.body %></p>

@@ -74,4 +74,4 @@ gem 'refile-mini_magick'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'devise-bootstrap-views'
-
+gem 'impressionist'
