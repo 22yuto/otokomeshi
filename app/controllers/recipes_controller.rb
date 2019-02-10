@@ -19,6 +19,7 @@ class RecipesController < ApplicationController
   def index
   	# @recipes = Recipe.where(user_id: current_user.id).page(params[:page]).reverse_order
     @recipes = Recipe.page(params[:page]).reverse_order
+    @favo = current_user.favorites
   end
 
   def search

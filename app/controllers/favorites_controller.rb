@@ -5,7 +5,6 @@ class FavoritesController < ApplicationController
 	def index
 		# favo = Favorite.where(user_id: current_user.id)
 		@favo = current_user.favorites
-		# @recipe = Recipe.find(params[:recipe_id])
 	end
 
 	def create
