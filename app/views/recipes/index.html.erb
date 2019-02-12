@@ -1,15 +1,16 @@
 <div class="container">
-	<div class="row">
-		<%= @favo.each do |favorite| %>
-		<div class="col-md-4">
-			<%= link_to recipe_path(favorite.recipe_id) do %>
-				<p> <%= favorite.recipe.title %></p>
-				<p> <%= attachment_image_tag favorite.recipe, :image, fallback: 'noimage.jpg', size: '150x150' %></p>
+	<% if user_signed_in? %>
+		<div class="row">
+			<%= @favo.each do |favorite| %>
+			<div class="col-md-4">
+				<%= link_to recipe_path(favorite.recipe_id) do %>
+					<p> <%= favorite.recipe.title %></p>
+					<p> <%= attachment_image_tag favorite.recipe, :image, fallback: 'noimage.jpg', size: '150x150' %></p>
+				<% end %>
+			</div>
 			<% end %>
 		</div>
-		<% end %>
-	</div>
-
+	<% end %>
 
 
 
