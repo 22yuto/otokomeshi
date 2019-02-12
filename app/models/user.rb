@@ -19,7 +19,8 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :following
 
 
-
+  acts_as_paranoid
+  
   mount_uploader :profile_image, ImagesUploader
 
 
