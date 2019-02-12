@@ -1,9 +1,15 @@
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-4">
 		<p> <%= @recipe.title %></p>
 		<%= attachment_image_tag @recipe, :image, fallback: 'noimage.jpg', size: '150x150' %>
 		<p>閲覧数: <%= @recipe.impressionist_count %></p>
+	<!-- いいね機能 -->
+			<div id="likes_buttons_<%= @recipe.id %>">
+			 <%= render partial: 'likes/like', locals: { recipe: @recipe, likes: @likes} %>
+			</div>
+	<!-- ------ -->
 		</div>
 		<div class="col-md-8">
 		<p>内容: <%= @recipe.body %></p>
@@ -22,6 +28,7 @@
 	</div>
 	</div>
 </div>
+
 
 <!-- コメント機能 -->
 <div class="container">
