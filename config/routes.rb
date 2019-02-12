@@ -14,7 +14,8 @@ Rails.application.routes.draw do
 
   resources :recipes do
     resources :comments, only:[:create, :destroy]
-    resources :favorites, only:[:create,:destroy]
+    resources :favorites, only:[:create, :destroy]
+    resources :likes, only:[:create, :destroy]
     resources :orders
   end
   get '/myfavorites' => 'favorites#index', as: 'myfavorites'
