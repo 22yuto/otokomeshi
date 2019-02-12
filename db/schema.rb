@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_10_181443) do
+ActiveRecord::Schema.define(version: 2019_02_12_034722) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 2019_02_10_181443) do
     t.boolean "admin", default: false
     t.text "profile_image"
     t.text "introduction"
+    t.datetime "deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
