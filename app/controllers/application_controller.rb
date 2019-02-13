@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
     def set_search
       @search = Recipe.ransack(params[:q])
       @search_recipes = @search.result.page(params[:page])
+      @tag_search = Recipe.tagged_with(params[:search])
     end
 
 

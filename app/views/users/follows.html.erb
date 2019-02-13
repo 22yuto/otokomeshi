@@ -1,8 +1,5 @@
-<div class="panel panel-primary">
-	<div class="panel-heading">フォロー</div>
-		<div class="panel-body">
+<h4><strong>フォロー</strong></h4></br>
 		<% @users.each do |user| %>
-		<div class="border-bottom"> <!-- なぜかこれ入れると二段目以降のずれ治る -->
 		  <%= link_to user_path(user.id) do %>
 		  <p> <%= user.name %></p>
 		  <p> <%= image_tag user.profile_image.to_s, size: '80x80', :style => "border-radius: 5%;" %></p>
@@ -17,7 +14,4 @@
 		            	<%=link_to "フォローする", user_relationships_path(user.id), method: :post, :style => "text-decoration: none;" %></p>
 		        <% end %>
 		    <% end %>
-		</div>
 		<% end %>
-		</div>
-</div>

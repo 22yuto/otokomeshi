@@ -1,6 +1,7 @@
 <div class="container">
 	<div class="row">
-		<h3> レシピ投稿</h3></div></br>
+		<h4><strong>レシピ投稿</strong></h4>
+	</div></br>
 
 		<%= form_for @recipe, :url => { :controller => :recipes, :action => :create } do |f| %>
 
@@ -12,6 +13,9 @@
 
 		<p> レシピコメント</p>
 		<%= f.text_area :body %>
+
+		<p> <%= f.label :category_list, "カテゴリー(複数選択は , 区切り)" %></p>
+		<%= text_field_tag 'recipe[category_list]', @recipe.category_list.join(',') %>
 
 		<p> 調理時間</p>
 		<%= f.text_field :time %>

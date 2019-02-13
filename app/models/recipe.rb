@@ -14,6 +14,11 @@ class Recipe < ApplicationRecord
 
 	has_many :likes, dependent: :destroy
 
+# タグ
+	acts_as_taggable_on :labels
+	acts_as_taggable
+	acts_as_ordered_taggable_on :categories
+
 	def like_user(user_id)
 		likes.find_by(user_id: user_id)
 	end

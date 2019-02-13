@@ -1,27 +1,83 @@
-<div class="container">
-	<% if user_signed_in? %>
+<!-- ユーザーお気に入り一覧 -->
+</br></br></br></br></br>
+<% if user_signed_in? %>
+<h4><strong>お気に入りレシピ</strong></h4></br>
+	<div class="container">
 		<div class="row">
 			<%= @favo.each do |favorite| %>
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<%= link_to recipe_path(favorite.recipe_id) do %>
 					<p> <%= favorite.recipe.title %></p>
-					<p> <%= attachment_image_tag favorite.recipe, :image, fallback: 'noimage.jpg', size: '150x150' %></p>
+					<p> <%= attachment_image_tag favorite.recipe, :image, fallback: 'no-image.png', size: '100x100' %></p>
 				<% end %>
 			</div>
 			<% end %>
 		</div>
-	<% end %>
+	</div>
+<% end %>
 
-
-
-	<div class="row">
-		<% @recipes.each do |recipe| %>
-		<div class="col-md-4">
-			<%= link_to recipe_path(recipe.id) do %>
-				<p> <%= recipe.title %></p>
-				<p> <%= attachment_image_tag recipe, :image, format: 'jpg', fallback: 'noimage.jpg', size: '150x150' %></p>
+<!-- レシピindex -->
+	<div class="container">
+		<div class="row">
+			<% @recipes.each do |recipe| %>
+			<div class="col-md-3">
+				<%= link_to recipe_path(recipe.id) do %>
+					<p> <%= recipe.title %></p>
+					<p> <%= attachment_image_tag recipe, :image, fallback: 'noimage.jpg', size: '100x100' %></p>
+					<p> <%= render 'tag_list', tag_list: recipe.category_list %></p>
+				<% end %>
+			</div>
 			<% end %>
 		</div>
-		<% end %>
+		<div class="row">
+			<div class="col-md-10"></div>
+			<div class="col-md-2"><%= paginate @recipes %></div>
+		</div>
 	</div>
-</div>
+
+<!-- カテゴリー一覧 -->
+<h4><strong>ご飯もの</strong></h4></br>
+	<div class="container">
+		<div class="row">
+			<% @rice_tag_recipes.each do |tag| %>
+			<div class="col-md-4">
+				<%= link_to recipe_path(tag.id) do %>
+					<p> <%= tag.title %></p>
+					<p> <%= attachment_image_tag tag, :image, fallback: 'no-image.png', size: '80x80' %></p>
+					<p> <%= render 'tag_list', tag_list: tag.category_list %></p>
+				<% end %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+
+<h4><strong>野菜</strong></h4></br>
+	<div class="container">
+		<div class="row">
+			<% @vegetable_tag_recipes.each do |tag| %>
+			<div class="col-md-4">
+				<%= link_to recipe_path(tag.id) do %>
+					<p> <%= tag.title %></p>
+					<p> <%= attachment_image_tag tag, :image, fallback: 'no-image.png', size: '80x80' %></p>
+					<p> <%= render 'tag_list', tag_list: tag.category_list %></p>
+				<% end %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+
+<h4><strong>スープ</strong></h4></br>
+	<div class="container">
+		<div class="row">
+			<% @soup_tag_recipes.each do |tag| %>
+			<div class="col-md-4">
+				<%= link_to recipe_path(tag.id) do %>
+					<p> <%= tag.title %></p>
+					<p> <%= attachment_image_tag tag, :image, fallback: 'no-image.png', size: '80x80' %></p>
+					<p> <%= render 'tag_list', tag_list: tag.category_list %></p>
+				<% end %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+
