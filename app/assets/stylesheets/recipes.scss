@@ -20,7 +20,7 @@
 
 h4 {
     color: #444;
-    font-size: 24px;
+    font-size: 20px;
     position: relative;
     padding: 10px 0 2px 28px;
     border-bottom: 2px solid #d14;
@@ -46,3 +46,29 @@ h4 {
         transform: rotate(20deg);
     }
 }
+
+.category-recipe {
+  position: relative;
+  color: #158b2b;
+  font-size: 20px;
+  padding: 10px 0;
+  text-align: center;
+  margin: 1.5em 0;
+}
+.category-recipe:before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  width: 150px;
+  height: 58px;
+  border-radius: 50%;
+  border: 5px solid #a6ddb0;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+
+
