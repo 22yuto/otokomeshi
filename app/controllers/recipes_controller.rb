@@ -19,8 +19,11 @@ impressionist :actions=> [:show]
 
   def index
   	# @recipes = Recipe.where(user_id: current_user.id).page(params[:page]).reverse_order
-    @recipes = Recipe.page(params[:page]).reverse_order
-    @favo = current_user.favorites
+    @recipes = Recipe.page(params[:page]).per(4).reverse_order
+    @favo = Favorite.where(user_id: current_user.id)
+    @rice_tag_recipes = Recipe.tagged_with(["ご飯もの"])
+    @vegetable_tag_recipes = Recipe.tagged_with(["野菜"])
+    @soup_tag_recipes = Recipe.tagged_with(["スープ"])
   end
 
   def search
@@ -42,8 +45,8 @@ impressionist :actions=> [:show]
   private
 
   def recipe_params
-      params.require(:recipe).permit(:title, :image, :body, :time, :cost, :material, :quantity,
-      	 orders_attributes: [:id, :order_num, :order_image, :order_body, :image])
+      params.require(:recipe).permit(:title, :image, :body, :time, :cost, :material, :quantity, 
+        :category_list, orders_attributes: [:id, :order_num, :order_image, :order_body, :image])
   end
 
 

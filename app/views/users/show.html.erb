@@ -1,8 +1,8 @@
 <div class="container">
 <% if @user.id == current_user.id %>
-	<h3>マイページ</h3>
+	<h4><strong>マイページ</strong></h4></br>
 	<% else %>
-	<h3>ユーザーページ</h3>
+	<h4><strong>ユーザーページ</strong></h4></br>
 <% end %>
 	<div class="row">
 		<div class="col-md-3">
@@ -40,11 +40,12 @@
 		</div>
 	</div>
 </div>
+</br></br>
 <div class="container">
 	<div class="row">
-		<h3>レシピ一覧</h3>
+		<h4><strong>レシピ一覧</strong></h4></br>
 		<% @recipes.each do |recipe| %>
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<%= link_to recipe_path(recipe.id) do %>
 				<p><%= recipe.title %></p>
 				<%= attachment_image_tag recipe, :image, format: 'jpg', fallback: 'noimage.jpg', size: '75x75' %></br></br>
