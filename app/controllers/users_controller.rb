@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
-		@recipes = @user.recipes.page(params[:page]).reverse_order
+		@recipes = @user.recipes.page(params[:page]).per(4).reverse_order
 	end
 
 	def edit
