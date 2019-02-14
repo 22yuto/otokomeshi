@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :recipes, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
 
   # フォローする側のUserからみたRelationship
   has_many :active_relationships, class_name: "Relationship", foreign_key: :following_id

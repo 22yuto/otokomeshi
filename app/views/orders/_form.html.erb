@@ -1,0 +1,14 @@
+
+<%= simple_form_for @new_order, :url => { :controller => :orders, :action => :create }, remote: true do |f| %>
+	<p>手順</p>
+	<%= f.number_field :order_num, min:1, max:100 %>
+
+	<p>イメージ</p>
+	<%= f.file_field :order_image %>
+
+	<p>作り方</p>
+	<%= f.text_area :order_body %>
+
+	<%= f.button :submit, "登録" %>
+
+<% end %>
