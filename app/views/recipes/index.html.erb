@@ -1,10 +1,10 @@
-</br>
+
 <!-- レシピindex -->
 <div class="container">
 	<div class="row">
-		<div class="col-md-9">
+		<div class="col-md-8">
 			<div class="row">
-				<h4><strong>新着レシピ</strong></h4></br>
+				<h3><strong>新着レシピ</strong></h3></br>
 					<% @recipes.each do |recipe| %>
 					<div class="col-md-3">
 						<%= link_to recipe_path(recipe.id) do %>
@@ -14,11 +14,11 @@
 						<% end %>
 					</div>
 					<% end %>
-					<%= paginate @recipes %>
+					<div class="paginate"><%= paginate @recipes %></div>
 
 <!-- ユーザーお気に入り一覧 -->
 			<% if user_signed_in? %>
-				<h4><strong>お気に入り</strong></h4></br>
+				<h3><strong>お気に入り</strong></h3></br>
 					<%= @favo.each do |favorite| %>
 					<div class="col-md-3">
 						<%= link_to recipe_path(favorite.recipe_id) do %>
@@ -30,9 +30,13 @@
 			<% end %>
 			</div>
 		</div>
-		<div class="col-md-3">
+	<div class="col-md-1"></div>
+		<div class="col-md-3"></br>
 <!-- カテゴリー一覧 -->
+			<div class="categories">
+			<div class="row">
 			<h5 class="category-recipe"><strong>カテゴリー</strong></h5>
+			</div>
 				<h5><i class="fas fa-utensils">ご飯もの</i></h5>
 					<% @rice_tag_recipes.each do |tag| %>
 						<%= link_to recipe_path(tag.id) do %>
@@ -48,7 +52,7 @@
 									<p><%= render 'tag_list', tag_list: tag.category_list %></p>
 								</div>
 							</div>
-						<%= paginate @recipes %>
+						<div class="paginate"><%= paginate @recipes %></div>
 						</div>
 					<% end %>
 				</br>
@@ -67,7 +71,7 @@
 									<p><%= render 'tag_list', tag_list: tag.category_list %></p>
 								</div>
 							</div>
-						<%= paginate @recipes %>
+						<div class="paginate"><%= paginate @recipes %></div>
 						</div>
 					<% end %>
 				</br>
@@ -86,9 +90,10 @@
 									<p><%= render 'tag_list', tag_list: tag.category_list %></p>
 								</div>
 							</div>
-						<%= paginate @recipes %>
+						<div class="paginate"><%= paginate @recipes %></div>
 						</div>
 					<% end %>
+			</div>
 		</div>
 	</div>
 </div>
