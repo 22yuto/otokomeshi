@@ -21,9 +21,9 @@ impressionist :actions=> [:show]
   	# @recipes = Recipe.where(user_id: current_user.id).page(params[:page]).reverse_order
     @recipes = Recipe.page(params[:page]).per(4).reverse_order
     @favo = Favorite.where(user_id: current_user.id)
-    @rice_tag_recipes = Recipe.tagged_with(["ご飯もの"])
-    @vegetable_tag_recipes = Recipe.tagged_with(["野菜"])
-    @soup_tag_recipes = Recipe.tagged_with(["スープ"])
+    @rice_tag_recipes = Recipe.tagged_with(["ご飯もの"]).page(params[:page]).per(1).reverse_order
+    @vegetable_tag_recipes = Recipe.tagged_with(["野菜"]).page(params[:page]).per(1).reverse_order
+    @soup_tag_recipes = Recipe.tagged_with(["スープ"]).page(params[:page]).per(1).reverse_order
   end
 
   def search
@@ -38,6 +38,23 @@ impressionist :actions=> [:show]
   end
 
   def edit
+    @recipe = Recipe.find(params[:id])
+    if @recipe.user_id != current_user.id
+      flash[:notice] = "can't successfully access!!"
+      redirect_to root_path
+    end
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(recipe_params)
+    redirect_to recipe_path(@recipe.id)
+  end
+
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    @recipe.destroy
+    redirect_to user_path(current_user.id)
   end
 
 

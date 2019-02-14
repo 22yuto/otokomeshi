@@ -25,6 +25,13 @@
 			<%= link_to "お気に入りに追加", recipe_favorites_path(@recipe.id), method: :post, 
 			:style => "text-decoration: none;" %>
 			</p>
+		<% else %>
+			<p class="btn btn-default">
+			<%= link_to "レシピ編集", edit_recipe_path(@recipe.id), :style => "text-decoration: none;" %>
+			</p>
+			<p class="btn btn-default">
+			<%= link_to "削除", recipe_path(@recipe.id), method: :delete, 'data-confirm' => '削除しますか?', :style => "text-decoration: none;" %>
+			</p>
 		<% end %>
 	</div>
 	</div>
