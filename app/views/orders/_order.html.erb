@@ -1,0 +1,16 @@
+<div class="container">
+	<div class="row">
+		<% if @new_orders.present? %>
+			<% @new_orders.each do |order| %>
+				<div class="col-md-3">
+				<p>手順 <%= order.order_num %></p>
+
+				<%= image_tag order.order_image.to_s, size: '150x150' %>
+
+				<p>作り方</p>
+				<%= order.order_body %>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>

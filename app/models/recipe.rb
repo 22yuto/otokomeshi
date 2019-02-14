@@ -5,12 +5,12 @@ class Recipe < ApplicationRecord
 	belongs_to :user
 	has_many :comments, dependent: :destroy
 
-	has_many :orders
+	has_many :orders, dependent: :destroy
 	accepts_nested_attributes_for :orders, allow_destroy: true
 
 	is_impressionable
 
-	has_many :favorites
+	has_many :favorites, dependent: :destroy
 
 	has_many :likes, dependent: :destroy
 

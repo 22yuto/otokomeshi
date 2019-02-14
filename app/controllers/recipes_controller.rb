@@ -11,7 +11,7 @@ impressionist :actions=> [:show]
   	@recipe = Recipe.new(recipe_params)
   	@recipe.user_id = current_user.id
   	if @recipe.save
-  	   redirect_to root_path
+  	   redirect_to new_recipe_order_path(@recipe.id)
   	else
   	   render 'new'
   	end

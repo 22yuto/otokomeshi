@@ -1,42 +1,58 @@
 <div class="container">
 	<div class="row">
+		<h2> <%= @recipe.title %></h2>
 		<div class="col-md-4">
-		<p> <%= @recipe.title %></p>
-		<%= attachment_image_tag @recipe, :image, fallback: 'noimage.jpg', size: '150x150' %>
-		<p>閲覧数: <%= @recipe.impressionist_count %></p>
-	<!-- いいね機能 -->
-			<div id="likes_buttons_<%= @recipe.id %>">
-			 <%= render partial: 'likes/like', locals: { recipe: @recipe, likes: @likes} %>
-			</div>
-	<!-- ------ -->
+			<p><%= attachment_image_tag @recipe, :image, fallback: 'noimage.jpg', size: '200x200' %></p>
+			<p>閲覧数: <%= @recipe.impressionist_count %></p>
 		</div>
+
 		<div class="col-md-8">
 		<p>内容: <%= @recipe.body %></p>
 		<p>調理時間: <%= @recipe.time %></p>
 		<p>コスト: <%= @recipe.cost %></p>
 		<p>投稿した人: <%= link_to @recipe.user.name, user_path(@recipe.user_id) %></p>
+		</br>
+	<!-- お気に入り、編集ボタン -->
+		<div class="row">
+			<div class="col-md-6">
+				<% if @recipe.user_id != current_user.id %>
+					<p class="btn btn-default">
+					<%= link_to "お気に入りに追加", recipe_favorites_path(@recipe.id), method: :post, 
+					:style => "text-decoration: none;" %>
+					</p>
+				<% else %>
+					<p class="btn btn-default">
+					<%= link_to "レシピ編集", edit_recipe_path(@recipe.id), :style => "text-decoration: none;" %>
+					</p>
+					<p class="btn btn-default">
+					<%= link_to "削除", recipe_path(@recipe.id), method: :delete, 'data-confirm' => '削除しますか?', :style => "text-decoration: none;" %>
+					</p>
+				<% end %>
+			</div>
+	<!-- いいね機能 -->
+			<div class="col-md-6">
+				<div id="likes_buttons_<%= @recipe.id %>">
+				 <%= render partial: 'likes/like', locals: { recipe: @recipe, likes: @likes} %>
+				</div>
+			</div>
+		</div>
 		</div>
 	</div>
+
+<!-- 作り方手順 -->
+<h3>作り方</h3>
+<div class="container">
 	<div class="row">
-		<div class="col-md-8"></div>
-		<div class="col-md-4">
-		<% if @recipe.user_id != current_user.id %>
-			<p class="btn btn-default">
-			<%= link_to "お気に入りに追加", recipe_favorites_path(@recipe.id), method: :post, 
-			:style => "text-decoration: none;" %>
-			</p>
-		<% else %>
-			<p class="btn btn-default">
-			<%= link_to "レシピ編集", edit_recipe_path(@recipe.id), :style => "text-decoration: none;" %>
-			</p>
-			<p class="btn btn-default">
-			<%= link_to "削除", recipe_path(@recipe.id), method: :delete, 'data-confirm' => '削除しますか?', :style => "text-decoration: none;" %>
-			</p>
+		<% @recipe.orders.each do |recipe| %>
+			<div class="col-md-3">
+				<p>手順<%= recipe.order_num %></p>
+				<p><%= image_tag recipe.order_image.to_s, size: '150x150' %></p>
+				<p><%= recipe.order_body %></p>
+				</br>
+			</div>
 		<% end %>
 	</div>
-	</div>
 </div>
-
 
 <!-- コメント機能 -->
 <div class="container">
@@ -47,7 +63,7 @@
 		    <div id="comments_area"><!-- #① -->
 		      <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
 		      <%= render partial: 'comments/index', locals: { comments: @comments } %>
-		    </div>  
+		    </div>
 		    <% if user_signed_in? %>
 		      <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
 		      <%= render partial: 'comments/form', locals: { comment: @comment, recipe: @recipe } %>
