@@ -33,32 +33,61 @@
 		<div class="col-md-3">
 <!-- カテゴリー一覧 -->
 			<h5 class="category-recipe"><strong>カテゴリー</strong></h5>
-			<div class="text-center">
 				<h5><i class="fas fa-utensils">ご飯もの</i></h5>
 					<% @rice_tag_recipes.each do |tag| %>
 						<%= link_to recipe_path(tag.id) do %>
-							<p> <%= attachment_image_tag tag, :image, fallback: 'no-image.png', size: '80x80' %></p>
-							<p> <%= tag.title %></p>
-							<p> <%= render 'tag_list', tag_list: tag.category_list %></p>
+						<div class="row">
+							<div class="col-md-4">
+							<%= attachment_image_tag tag, :image, fallback: 'noimage.jpg', size: '80x80' %>
+							</div>
 						<% end %>
+							<div class="col-md-8">
+								<div class="text-over">
+									<p> <%= tag.title %></p>
+									<p><%= tag.body %></p>
+									<p><%= render 'tag_list', tag_list: tag.category_list %></p>
+								</div>
+							</div>
+						<%= paginate @recipes %>
+						</div>
 					<% end %>
 				</br>
 				<h5><i class="fas fa-carrot">野菜</i></h5>
 					<% @vegetable_tag_recipes.each do |tag| %>
 						<%= link_to recipe_path(tag.id) do %>
-							<p> <%= attachment_image_tag tag, :image, fallback: 'no-image.png', size: '80x80' %></p>
-							<p> <%= tag.title %></p>
-							<p> <%= render 'tag_list', tag_list: tag.category_list %></p>
+						<div class="row">
+							<div class="col-md-4">
+							<%= attachment_image_tag tag, :image, fallback: 'no-image.png', size: '80x80' %>
+							</div>
 						<% end %>
+							<div class="col-md-8">
+								<div class="text-over">
+									<p> <%= tag.title %></p>
+									<p><%= tag.body %></p>
+									<p><%= render 'tag_list', tag_list: tag.category_list %></p>
+								</div>
+							</div>
+						<%= paginate @recipes %>
+						</div>
 					<% end %>
 				</br>
 				<h5><i class="fas fa-mug-hot">スープ</i></h5>
 					<% @soup_tag_recipes.each do |tag| %>
 						<%= link_to recipe_path(tag.id) do %>
-							<p> <%= attachment_image_tag tag, :image, fallback: 'no-image.png', size: '80x80' %></p>
-							<p> <%= tag.title %></p>
-							<p> <%= render 'tag_list', tag_list: tag.category_list %></p>
+						<div class="row">
+							<div class="col-md-4">
+							<%= attachment_image_tag tag, :image, fallback: 'no-image.png', size: '80x80' %>
+							</div>
 						<% end %>
+							<div class="col-md-8">
+								<div class="text-over">
+									<p> <%= tag.title %></p>
+									<p><%= tag.body %></p>
+									<p><%= render 'tag_list', tag_list: tag.category_list %></p>
+								</div>
+							</div>
+						<%= paginate @recipes %>
+						</div>
 					<% end %>
 		</div>
 	</div>

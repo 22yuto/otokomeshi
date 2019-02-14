@@ -70,5 +70,15 @@ h4 {
   transform: translateX(-50%);
 }
 
+.text-over {
+  width: 100%;
+  text-align: left;
+  overflow: hidden;
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
 
 
