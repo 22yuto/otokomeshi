@@ -1,8 +1,8 @@
 <div class="container">
 <% if @user.id == current_user.id %>
-	<h4><strong>マイページ</strong></h4></br>
+	<h3><strong>マイページ</strong></h3></br>
 	<% else %>
-	<h4><strong>ユーザーページ</strong></h4></br>
+	<h3><strong>ユーザーページ</strong></h3></br>
 <% end %>
 	<div class="row">
 		<div class="col-md-3">
@@ -53,7 +53,7 @@
 			</div>
 		<% end %>
 	</div>
-	<div class="paginate"><%= paginate @recipes %></div>
+	<%= paginate @recipes %>
 </div>
 
 
