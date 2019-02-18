@@ -13,11 +13,17 @@
 			<p>メール: <%= @user.email %></p>
 			<p>ひとこと: <%= @user.introduction %></p>
 <!-- フォローボタン -->
-			<span class="btn btn-primary btn-sm"><%=link_to "フォロー", follows_user_path(@user.id),
-			 :style => "color: white; text-decoration: none;" %>
-			   <%= @user.followings.count %></span>
-			<span class="btn btn-primary btn-sm"><%=link_to "フォロワー", followers_user_path(@user.id), :style => "color: white; text-decoration: none;" %>
-			   <%= @user.followers.count %></span>
+			<span class="btn-social-long-twitter">
+				<span><%=link_to "フォロー", follows_user_path(@user.id),
+				 :style => "color: white; text-decoration: none;" %>
+				</span>
+			    <%= @user.followings.count %>
+			</span>
+			<span class="btn-social-long-twitter">
+				<span><%=link_to "フォロワー", followers_user_path(@user.id), :style => "color: white; text-decoration: none;" %>
+				</span>
+				   <%= @user.followers.count %>
+			</span>
 <!-- ------------- -->
 <!-- フォロー追加解除 -->
 		<% if current_user != @user %>
@@ -25,9 +31,12 @@
 	        	<p class="btn btn-danger btn-sm">
 	        		<%=link_to "フォロー解除", user_relationships_path(@user.id), method: :delete, "data-confirm" => 'フォロー解除しますか？', :style => "color: white; text-decoration: none;" %></p>
 	    	<% else %>
-	        	<p class="btn btn-default btn-sm">
+	    	<span class="btn-social-long-twitter"><i class="fab fa-twitter fa-lg"></i>
+	        	<span>
 	        	<%=link_to "フォローする", user_relationships_path(@user.id), method: :post,
-	        	 :style => "text-decoration: none;" %></p>
+	        	 :style => "text-decoration: none;" %>
+	        	</span>
+	        </span>
 	    	<% end %>
 		<% end %>
 <!-- ------------- -->

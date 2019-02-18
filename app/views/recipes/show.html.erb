@@ -1,6 +1,7 @@
 <div class="container">
 	<div class="row">
-		<h2> <%= @recipe.title %></h2>
+		<h2><strong> <%= @recipe.title %></strong></h2>
+		</br>
 		<div class="col-md-4">
 			<p><%= attachment_image_tag @recipe, :image, fallback: 'noimage.jpg', size: '200x200' %></p>
 			<p>閲覧数: <%= @recipe.impressionist_count %></p>
@@ -41,11 +42,19 @@
 
 <!-- 作り方手順 -->
 <h3>作り方</h3>
+</br></br>
 <div class="container">
 	<div class="row">
 		<% @recipe.orders.each do |recipe| %>
 			<div class="col-md-3">
-				<p>手順<%= recipe.order_num %></p>
+				<div class="row">
+					<div class="col-md-8">
+						<p>手順<%= recipe.order_num %></p>
+					</div>
+					<div class="col-md-4">
+						<i class="fas fa-arrow-circle-right fa-2x"></i>
+					</div>
+				</div>
 				<p><%= image_tag recipe.order_image.to_s, size: '150x150' %></p>
 				<p><%= recipe.order_body %></p>
 				</br>
@@ -59,7 +68,8 @@
 	<div class="row">
 		<div class="col-md-12">
 		<div>
-		    <h4>コメント</h4>
+		    <h3>コメント</h3>
+			</br>
 		    <div id="comments_area"><!-- #① -->
 		      <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
 		      <%= render partial: 'comments/index', locals: { comments: @comments } %>

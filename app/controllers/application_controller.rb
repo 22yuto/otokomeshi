@@ -1,9 +1,11 @@
 class ApplicationController < ActionController::Base
 
 	protect_from_forgery with: :exception
+  before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_search
-
+  # protect_from_forgery with: :exception
+  # before_action :createlogin
 
     def set_search
       @search = Recipe.ransack(params[:q])
@@ -11,7 +13,15 @@ class ApplicationController < ActionController::Base
       @tag_search = Recipe.tagged_with(params[:search])
     end
 
-
+    # def createlogin
+    #   if session[:user_id]
+    #     @current_user = User.find_by(id: session[:user_id])
+    #   else
+    #     @current_user = User.new
+    #     @current_user.save
+    #     session[:user_id] = @current_user.id
+    #   end
+    # end
 
 
 
@@ -30,5 +40,8 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :password, :password_confirmation])
     end
 
+    def after_sign_out_path_for(resource)
+      new_user_session_path # ログアウト後に遷移するpathを設定
+    end
 
 end

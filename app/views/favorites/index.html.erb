@@ -7,7 +7,7 @@
 		<div class="col-md-4">
 			<%= link_to recipe_path(favorite.recipe_id) do %>
 		<p><%= favorite.recipe.title %></p>
-		<%= attachment_image_tag favorite.recipe.image, :image, format: 'jpg', fallback: 'noimage.jpg', size: '150x150' %></br></br>
+		<%= attachment_image_tag favorite.recipe.image, :image, fallback: 'noimage.jpg', size: '150x150' %></br></br>
 		<p class="btn btn-danger btn-xs"><%= link_to "お気に入り解除", recipe_favorite_path(favorite.recipe, favorite), method: :delete, :style => "color: white; text-decoration: none;" %></p>
 		<% end %>
 		</div>

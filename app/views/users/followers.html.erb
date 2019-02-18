@@ -4,14 +4,4 @@
 				  <p> <%= user.name %></p>
 				  <p> <%= image_tag user.profile_image.to_s, size: '80x80', :style => "border-radius: 5%;" %></p>
 		  	<% end %>
-		    <% if current_user != user %>
-		        <% if user.followed_by?(current_user) %>
-		            <p class="btn btn-danger btn-xs">
-		            	<%=link_to "フォロー解除", user_relationships_path(user.id), method: :delete, "data-confirm" => 'フォロー解除しますか？', 
-		            	:style => "color: white; text-decoration: none;" %></p>
-		        <% else %>
-		            <p class="btn btn-default btn-xs">
-		            	<%=link_to "フォローする", user_relationships_path(user.id), method: :post, :style => "text-decoration: none;" %></p>
-		        <% end %>
-		    <% end %>
 		<% end %>
