@@ -1,17 +1,17 @@
 <h3>レシピ投稿2</h3>
 <div class="container">
 	<div class="row">
-		<h4>作り方</h4>
+		<h4><strong>作り方</strong></h4>
 		<div id="orders">
 
 			<%= render @new_order %>
 
 		</div>
 		</br></br>
-		<%= link_to "作り方を追加する", new_recipe_order_path, remote: true %>
+		<%= link_to "作り方を追加する", new_recipe_order_path, remote: true, class: "btn btn-default" %>
 		</br></br>
 		<div id="order-form"></div>
 
-		<%= link_to "登録", recipe_path(@recipe.id), class: "btn btn-default" %>
+		<%= link_to "登録", recipe_path(@recipe.id), class: "btn-flat-logo" %>
 	</div>
 </div>

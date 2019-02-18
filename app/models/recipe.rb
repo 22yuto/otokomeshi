@@ -2,6 +2,8 @@ class Recipe < ApplicationRecord
 
 	attachment :image
 
+	validates :title, presence: true
+
 	belongs_to :user
 	has_many :comments, dependent: :destroy
 

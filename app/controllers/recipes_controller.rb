@@ -24,6 +24,7 @@ impressionist :actions=> [:show]
     @rice_tag_recipes = Recipe.tagged_with(["ご飯もの"]).page(params[:page]).per(1).reverse_order
     @vegetable_tag_recipes = Recipe.tagged_with(["野菜"]).page(params[:page]).per(1).reverse_order
     @soup_tag_recipes = Recipe.tagged_with(["スープ"]).page(params[:page]).per(1).reverse_order
+
   end
 
   def search
@@ -32,6 +33,7 @@ impressionist :actions=> [:show]
 
   def show
   	@recipe = Recipe.find(params[:id])
+    # @favo = @recipe.favorites
     impressionist(@recipe, nil, unique: [:session_hash])
     @comment = Comment.new
     @comments = @recipe.comments

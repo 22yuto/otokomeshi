@@ -16,10 +16,10 @@
 			<%= text_field_tag 'recipe[category_list]', @recipe.category_list.join(',') %>
 
 			<p> 調理時間</p>
-			<%= f.text_field :time %>
+			<%= f.text_field :time %>分
 
 			<p> コスト</p>
-			<%= f.text_field :cost %>
+			<%= f.text_field :cost %>円
 
 			<p> 材料</p>
 			<%= f.text_area :material %>
@@ -33,7 +33,7 @@
 				<p>作り方</p>
 				<%= a.text_area :order_body %>
 				<% end %>
-			<%= f.submit '次へ' %>
+			<%= f.submit '完了', class: "btn-flat-logo" %>
 		<% end %>
 	</div>
 </div>

@@ -7,7 +7,7 @@
 		    <% if current_user != user %>
 		        <% if user.followed_by?(current_user) %>
 		            <p class="btn btn-danger btn-xs">
-		            	<%=link_to "フォロー解除", user_relationships_path(user.id), method: :delete, "data-confirm" => 'フォロー解除しますか？', 
+		            	<%=link_to "フォロー解除", user_relationships_path(user.id), method: :delete, "data-confirm" => 'フォローリストから外しますか？', 
 		            	:style => "color: white; text-decoration: none;" %></p>
 		        <% else %>
 		            <p class="btn btn-default btn-xs">
