@@ -1,2 +1,17 @@
-<h1>Orders#edit</h1>
-<p>Find me in app/views/orders/edit.html.erb</p>
+<h3><strong>手順編集</strong></h3>
+<div class="container">
+	<div class="row">
+		<h4><strong>作り方</strong></h4>
+		<div id="orders">
+
+			<%= render @new_order %>
+
+		</div>
+		</br></br>
+		<%= link_to "作り方を追加する", new_recipe_order_path, remote: true, class: "btn btn-default" %>
+		</br></br>
+		<div id="order-form"></div>
+
+		<%= link_to "アップデート", recipe_path(@recipe.id), class: "btn btn-success" %>
+	</div>
+</div>

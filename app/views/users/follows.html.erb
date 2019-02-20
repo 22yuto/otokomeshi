@@ -1,4 +1,7 @@
 <h3><strong>フォロー</strong></h3></br>
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
 		<% @users.each do |user| %>
 		  <%= link_to user_path(user.id) do %>
 		  <p> <%= user.name %></p>
@@ -12,6 +15,14 @@
 		        <% else %>
 		            <p class="btn btn-default btn-xs">
 		            	<%=link_to "フォローする", user_relationships_path(user.id), method: :post, :style => "text-decoration: none;" %></p>
-		        <% end %>
-		    <% end %>
+		        <% end %></br>
+		    <% end %></br>
 		<% end %>
+		</div>
+		<div class="col-md-9">
+			<% @users.each do |user| %>
+				<%= user.introduction %>
+			<% end %>
+		</div>
+	</div>
+</div>

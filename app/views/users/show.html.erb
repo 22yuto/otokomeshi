@@ -54,10 +54,10 @@
 	<div class="row">
 		<h4><strong>レシピ一覧</strong></h4></br>
 		<% @recipes.each do |recipe| %>
-			<div class="col-md-3">
+			<div class="col-md-2">
 				<%= link_to recipe_path(recipe.id) do %>
 				<p><%= recipe.title %></p>
-				<%= attachment_image_tag recipe, :image, format: 'jpg', fallback: 'noimage.jpg', size: '75x75' %></br></br>
+				<%= attachment_image_tag recipe, :image, format: 'jpg', fallback: 'noimage.jpg', size: '75x75', class: "recipe-image" %></br></br>
 				<% end %>
 			</div>
 		<% end %>

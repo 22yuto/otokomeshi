@@ -17,7 +17,11 @@ Rails.application.routes.draw do
     resources :favorites, only:[:create, :destroy]
     resources :likes, only:[:create, :destroy]
     resources :orders
+    get '/confirm' => 'recipes#confirm', as: 'confirms'
+    patch '/confirm' => 'recipes#confirm_update', as: 'confirms_update'
+
   end
+
   get '/myfavorites' => 'favorites#index', as: 'myfavorites'
   get '/searchs' => 'recipes#search', as: 'searchs'
 

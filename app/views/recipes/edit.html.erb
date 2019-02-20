@@ -24,16 +24,7 @@
 			<p> 材料</p>
 			<%= f.text_area :material %>
 
-				<%= f.fields_for :orders do |a| %>
-
-				<p>手順 <%= a.number_field :order_num, min:1, max:100 %></p>
-
-				<p> イメージ <%= a.file_field :order_image %></p>
-
-				<p>作り方</p>
-				<%= a.text_area :order_body %>
-				<% end %>
-			<%= f.submit '完了', class: "btn-flat-logo" %>
+			<%= f.submit '完了', class: "btn btn-primary" %>
 		<% end %>
 	</div>
 </div>

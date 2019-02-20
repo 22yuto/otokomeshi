@@ -54,6 +54,8 @@
     </header>
 
     <!-- ナビバー -->
+    <div class="container">
+      <div class="row">
         <nav class="navbar navbar-inverse">
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
@@ -69,12 +71,17 @@
               </li>
           </ul>
         </nav>
-
+      </div>
+    </div>
     <%= yield %>
 
-    <footer>
-      <p>Copyright © 2019 Otokomeshi All Rights Reserved.</p>
-    </footer>
+    <div class="container">
+      <div class="row">
+        <footer>
+          <p>Copyright © 2019 Otokomeshi All Rights Reserved.</p>
+        </footer>
+      </div>
+    </div>
 
   </body>
 </html>
