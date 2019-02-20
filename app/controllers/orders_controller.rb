@@ -27,6 +27,15 @@ class OrdersController < ApplicationController
   end
 
   def edit
+    @recipe = Recipe.find(params[:recipe_id])
+    @new_order = Order.find(params[:id])
+  end
+
+  def destroy
+    @recipe = Recipe.find(params[:recipe_id])
+    @new_order = Order.find_by(id: params[:id], recipe_id: @recipe.id)
+    @new_order.destroy
+    redirect_to recipe_path(@recipe)
   end
 
 

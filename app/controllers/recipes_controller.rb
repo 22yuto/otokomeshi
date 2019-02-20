@@ -7,11 +7,25 @@ impressionist :actions=> [:show]
   	@recipe.orders.build
   end
 
+  def confirm
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipe.user_id = current_user.id
+    render :new if @recipe.invalid?
+  end
+
+  def confirm_update
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipe.update(open_flg: true)
+    redirect_to recipe_path(@recipe)
+  end
+
   def create
   	@recipe = Recipe.new(recipe_params)
   	@recipe.user_id = current_user.id
-  	if @recipe.save
-  	   redirect_to new_recipe_order_path(@recipe.id)
+  	if params[:back]
+      render 'new'
+    elsif @recipe.save
+  	   redirect_to new_recipe_order_path(@recipe)
   	else
   	   render 'new'
   	end
@@ -19,11 +33,12 @@ impressionist :actions=> [:show]
 
   def index
   	# @recipes = Recipe.where(user_id: current_user.id).page(params[:page]).reverse_order
-    @recipes = Recipe.page(params[:page]).per(4).reverse_order
-    @favo = Favorite.where(user_id: current_user.id)
-    @rice_tag_recipes = Recipe.tagged_with(["ご飯もの"]).page(params[:page]).per(1).reverse_order
-    @vegetable_tag_recipes = Recipe.tagged_with(["野菜"]).page(params[:page]).per(1).reverse_order
-    @soup_tag_recipes = Recipe.tagged_with(["スープ"]).page(params[:page]).per(1).reverse_order
+    @recipes = Recipe.where(open_flg: true).page(params[:page]).per(4).reverse_order
+    # @favo = Favorite.where(user_id: current_user.id)
+
+    @rice_tag_recipes = Recipe.tagged_with(["ご飯もの"]).page(params[:page]).per(2).reverse_order
+    @vegetable_tag_recipes = Recipe.tagged_with(["野菜"]).page(params[:page]).per(2).reverse_order
+    @soup_tag_recipes = Recipe.tagged_with(["スープ"]).page(params[:page]).per(2).reverse_order
 
   end
 
@@ -33,7 +48,7 @@ impressionist :actions=> [:show]
 
   def show
   	@recipe = Recipe.find(params[:id])
-    # @favo = @recipe.favorites
+    @favo = current_user.favorites.where(recipe_id: @recipe.id)
     impressionist(@recipe, nil, unique: [:session_hash])
     @comment = Comment.new
     @comments = @recipe.comments

@@ -1,36 +1,63 @@
+
 <!-- レシピindex -->
 <div class="container">
 	<div class="row">
 		<div class="col-md-8">
-			<div class="row">
+			<div class="row back">
 				<h3><strong>新着レシピ</strong></h3></br>
 					<% @recipes.each do |recipe| %>
-					<div class="col-md-3">
-						<%= link_to recipe_path(recipe.id) do %>
-						<p> <%= attachment_image_tag recipe, :image, fallback: 'noimage.jpg', size: '120x120' %></p>
-						<p> <%= recipe.title %></p>
-						<p> <%= render 'tag_list', tag_list: recipe.category_list %></p>
-						<% end %>
-					</div>
+							<div class="col-md-3">
+								<%= link_to recipe_path(recipe.id) do %>
+								<p> <%= attachment_image_tag recipe, :image, fallback: 'noimage.jpg', size: '120x120', class: "recipe-image" %></p>
+								<p> <%= recipe.title %></p>
+								<p> <%= render 'tag_list', tag_list: recipe.category_list %></p>
+								<% end %>
+							</div>
 					<% end %>
-					<div class="paginate"><%= paginate @recipes %></div>
-
+			</div></br>
 <!-- ユーザーお気に入り一覧 -->
+			<div class="row back">
 			<% if user_signed_in? %>
 				<h3><strong>お気に入り</strong></h3></br>
-					<%= @favo.each do |favorite| %>
+					<% current_user.favorites.each do |favorite| %>
 					<div class="col-md-3">
 						<%= link_to recipe_path(favorite.recipe_id) do %>
-							<p> <%= attachment_image_tag favorite.recipe, :image, fallback: 'no-image.png', size: '120x120' %></p>
+							<p> <%= attachment_image_tag favorite.recipe, :image, fallback: 'no-image.png', size: '120x120', class: "recipe-image" %></p>
 							<p> <%= favorite.recipe.title %></p>
 						<% end %>
 					</div>
 					<% end %>
-			<% end %>
+			</div></br>
+			<div class="row back">
+				<div class="col-md-12">
+			<h3><strong>フォロワー</strong></h3></br>
+			<div class="row">
+				<% current_user.followings.each do |follower| %>
+					<div class="col-md-3">
+						<%= link_to user_path(follower) do %>
+							<p> <%= image_tag follower.profile_image.to_s, size: '120x120', class: "recipe-image" %></p>
+							<p> <%= follower.name %></p>
+						<% end %>
+					</div>
+				<% end %>
+			</div>
+			<h3><strong>フォロワーレシピ</strong></h3></br>
+			<div class="row">
+				<% current_user.followers_recipes.each do |recipe| %>
+					<div class="col-md-3">
+						<%= link_to recipe_path(recipe) do %>
+							<p> <%= attachment_image_tag recipe, :image, fallback: 'noimage.jpg', size: '120x120', class: "recipe-image" %></p>
+							<p> <%= recipe.title %></p>
+						<% end %>
+					</div>
+				<% end %>
+
 			</div>
 		</div>
+	</div>
+		</div>
 	<div class="col-md-1"></div>
-		<div class="col-md-3"></br>
+		<div class="col-md-3 back">
 <!-- カテゴリー一覧 -->
 			<div class="categories">
 			<div class="row">
@@ -41,7 +68,7 @@
 						<%= link_to recipe_path(tag.id) do %>
 						<div class="row">
 							<div class="col-md-4">
-							<%= attachment_image_tag tag, :image, fallback: 'noimage.jpg', size: '80x80' %>
+							<%= attachment_image_tag tag, :image, fallback: 'noimage.jpg', size: '80x80', class: "recipe-image" %>
 							</div>
 						<% end %>
 							<div class="col-md-8">
@@ -51,16 +78,16 @@
 									<p><%= render 'tag_list', tag_list: tag.category_list %></p>
 								</div>
 							</div>
-						<div class="paginate"><%= paginate @recipes %></div>
-						</div>
+						</div></br>
 					<% end %>
+					<div class="paginate"><%= paginate @recipes %></div>
 				</br>
 				<h5><i class="fas fa-carrot">野菜</i></h5>
 					<% @vegetable_tag_recipes.each do |tag| %>
 						<%= link_to recipe_path(tag.id) do %>
 						<div class="row">
 							<div class="col-md-4">
-							<%= attachment_image_tag tag, :image, fallback: 'no-image.png', size: '80x80' %>
+							<%= attachment_image_tag tag, :image, fallback: 'no-image.png', size: '80x80', class: "recipe-image" %>
 							</div>
 						<% end %>
 							<div class="col-md-8">
@@ -70,16 +97,16 @@
 									<p><%= render 'tag_list', tag_list: tag.category_list %></p>
 								</div>
 							</div>
-						<div class="paginate"><%= paginate @recipes %></div>
-						</div>
+						</div></br>
 					<% end %>
+					<div class="paginate"><%= paginate @recipes %></div>
 				</br>
 				<h5><i class="fas fa-mug-hot">スープ</i></h5>
 					<% @soup_tag_recipes.each do |tag| %>
 						<%= link_to recipe_path(tag.id) do %>
 						<div class="row">
 							<div class="col-md-4">
-							<%= attachment_image_tag tag, :image, fallback: 'no-image.png', size: '80x80' %>
+							<%= attachment_image_tag tag, :image, fallback: 'no-image.png', size: '80x80', class: "recipe-image" %>
 							</div>
 						<% end %>
 							<div class="col-md-8">
@@ -89,11 +116,11 @@
 									<p><%= render 'tag_list', tag_list: tag.category_list %></p>
 								</div>
 							</div>
-						<div class="paginate"><%= paginate @recipes %></div>
-						</div>
+						</div></br>
 					<% end %>
+					<div class="paginate"><%= paginate @recipes %></div>
 			</div>
+			<% end %>
 		</div>
 	</div>
 </div>
-

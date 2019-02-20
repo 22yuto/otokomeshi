@@ -18,6 +18,8 @@ class User < ApplicationRecord
   # 中間テーブルを介して「following」モデルのUser(フォローする側)を集めることを「followers」と定義
   has_many :followers, through: :passive_relationships, source: :following
 
+  # has_many :followers_recipes, through: :followings, class_name: "Recipe", foreign_key: :user_id
+
 
   acts_as_paranoid
   
@@ -29,4 +31,12 @@ class User < ApplicationRecord
     passive_relationships.find_by(following_id: user.id).present?
   end
 
+  def followers_recipes
+    followers = self.followings
+    recipes = []
+    followers.each do |follower|
+      recipes += follower.recipes
+    end
+    return recipes
+  end
 end
