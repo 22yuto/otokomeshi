@@ -2,6 +2,10 @@ class RecipesController < ApplicationController
 
 impressionist :actions=> [:show]
 
+
+  def about
+  end
+  
   def new
   	@recipe = Recipe.new
   	@recipe.orders.build
@@ -35,7 +39,7 @@ impressionist :actions=> [:show]
   	# @recipes = Recipe.where(user_id: current_user.id).page(params[:page]).reverse_order
     @recipes = Recipe.where(open_flg: true).page(params[:page]).per(4).reverse_order
     # @favo = Favorite.where(user_id: current_user.id)
-
+    @recipe = Recipe.where('created_at > ?', 1.day.ago).last
     @rice_tag_recipes = Recipe.tagged_with(["ご飯もの"]).page(params[:page]).per(2).reverse_order
     @vegetable_tag_recipes = Recipe.tagged_with(["野菜"]).page(params[:page]).per(2).reverse_order
     @soup_tag_recipes = Recipe.tagged_with(["スープ"]).page(params[:page]).per(2).reverse_order
