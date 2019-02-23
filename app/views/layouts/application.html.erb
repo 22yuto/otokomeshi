@@ -17,68 +17,88 @@
     <header>
       <div class="container">
         <div class="row">
+          <div class="msg">
+            <% if flash[:notice] %>
+              <%= flash[:notice] %>
+            <% end %>
+          </div>
           <div class="col-md-1">
-            <label> <%= link_to image_tag('otokomeshi.png', size: '90x90'), root_path %>
+            <label> <%= link_to image_tag('otokomeshi.png', size: '100x100'), root_path %>
                     </label>
           </div>
           <div class="col-md-5">
-             <label class="logo-text"> <%= link_to image_tag('otoko-title.jpg', size: '200x20'), root_path %>
-                    </label>
-                  </div>
-          <div class="col-md-1"></div>
-          <div class="col-md-5">
-            <div class="header-nav">
-
+          </br>
+             <label class="logo-text"> <%= link_to image_tag('otoko-title.jpg', size: '200x20'), root_path %></label>
+          </div>
+          </br>
+          <div class="col-md-6">
+    <!-- アイコン -->
+          <div class="icons">
             <% if user_signed_in? %>
-              <span class="btn btn-danger"> <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, :style => "color: white; text-decoration: none;" %>
-                     </span>
-              <span class="btn btn-danger"> <%= link_to '退会', user_registration_path, method: :delete, "data-confirm" => "本当に退会しますか？", :style => "color: white; textdecoration: none;" %></span>
-                <% if current_user.try(:admin?) %>
-                  <span class="btn btn-danger"> <%= link_to "管理画面", "/admin", 
-                  :style => "color: white; text-decoration: none;" %></span>
-                <% end %>
-
-             <% else %>
-
-              <span> <%= link_to '新規登録', new_user_registration_path %></span>
-              <span> <%= link_to 'ログイン', new_user_session_path %></span>
-
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                  <p class="icon-text"><i class="fas fa-door-open fa-2x"></i>
+                  <span>ログアウト</span></p>
+              <% end %>
+              <%= link_to user_registration_path, method: :delete, "data-confirm" => "本当に退会しますか？" do %>
+                  <p class="icon-text"><i class="fas fa-user-alt-slash fa-2x"></i>
+                  <span>退会</span></p>
+              <% end %>
+              <% if current_user.try(:admin?) %>
+                  <%= link_to "/admin" do %>
+                    <p class="icon-text"><i class="fas fa-user-secret fa-2x"></i>
+                    <span>管理人</span></p>
+                  <% end %>
+              <% end %>
+            <% else %>
+              <%= link_to new_user_registration_path do %>
+                <p class="icon-text"><i class="fas fa-user-plus fa-2x"></i>
+                <span>新規登録</span></p>
+              <% end %>
+              <%= link_to new_user_session_path do %>
+                <p class="icon-text"><i class="fas fa-sign-in-alt fa-2x"></i>
+                <span>ログイン</span></p>
+              <% end %>
             <% end %>
-            </div>
           </div>
         </div>
-          <% if flash[:notice] %>
-          <%= flash[:notice] %>
-          <% end %>
       </div>
-    </header>
-
-    <!-- ナビバー -->
-    <div class="container">
+  <!-- ナビバー -->
       <div class="row">
         <nav class="navbar navbar-inverse">
-          <ul class="nav navbar-nav navbar-right">
-            <% if user_signed_in? %>
+          <ul class="nav navbar-nav navbar-center">
+        <% if user_signed_in? %>
+              <li> <%= link_to '漢飯とは？', about_path %></li>
               <li> <%= link_to 'レシピ投稿', new_recipe_path %></li>
               <li> <%= link_to 'お気に入り一覧', myfavorites_path %></li>
               <li> <%= link_to 'マイページ', user_path(current_user.id) %></li>
-            <% end %>
               <li class="searchbox">
+              <%= search_form_for @search, url: searchs_path do |f| %>
+                <span><%= f.text_field :title_cont, placeholder: 'レシピ名を入力...' %></span>
+                <label><%= f.submit "検索", class: 'search-btn'%></label>
+              <% end %>
+              </li>
+          </ul>
+        <% else %>
+            <ul class="nav navbar-nav navbar-center">
+              <li> <%= link_to '漢飯とは？', about_path %></li>
+              <li class="searchbox2">
                 <%= search_form_for @search, url: searchs_path do |f| %>
-                    <span><%= f.text_field :title_cont, placeholder: 'レシピ名を入力...' %></span>
+                  <span><%= f.text_field :title_cont, placeholder: 'レシピ名を入力...' %></span>
                     <label><%= f.submit "検索", class: 'search-btn'%></label>
                 <% end %>
               </li>
-          </ul>
+            </ul>
         </nav>
+        <% end %>
       </div>
-    </div>
+
+    </header>
     <%= yield %>
 
     <div class="container">
       <div class="row">
         <footer>
-          <p>Copyright © 2019 Otokomeshi All Rights Reserved.</p>
+          <p>Copyright <img src="/assets/otoko-logo.jpg" height="18" width="18"> 2019 Otokomeshi All Rights Reserved.</p>
         </footer>
       </div>
     </div>

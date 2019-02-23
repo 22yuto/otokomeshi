@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   get '/myfavorites' => 'favorites#index', as: 'myfavorites'
   get '/searchs' => 'recipes#search', as: 'searchs'
+  get '/abouts' => 'recipes#about', as: 'about'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

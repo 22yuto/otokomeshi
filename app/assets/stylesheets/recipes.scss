@@ -9,14 +9,60 @@
   color: none;
 }
 
-/*h1 {
-    color: #444;
-    font-size: 24px;
-    line-height: 1.6em;
-    padding: 0 0 2px 12px;
-    border-left: 4px solid #444;
-    border-bottom: 1px solid #888;
-}*/
+.about-header {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.about-text {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.main-image {
+  width: 100%;
+  background-image: url("oomori.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  position: relative;
+}
+
+.main-image::before {
+  background-color: rgba(0,0,0,0.4);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+}
+
+
+.main-image p {
+  font-family: 'ヒラギノ角ゴ Std W8';
+  font-size: 30px;
+  position: absolute;
+  top: 300px;
+  right: 130px;
+  font-weight: 600;
+  color: #FAFAFA;
+  border-bottom: 2px solid #FF0033;
+  opacity: 0.9;
+}
+
+.main-image label {
+  font-family: 'ヒラギノ角ゴ Std W8';
+  font-size: 15px;
+  position: absolute;
+  font-weight: 100;
+  top: 350px;
+  right: 140px;
+  color: #FAFAFA;
+  opacity: 0.8;
+}
+
+
 
 .paginate {
   text-align: right;
