@@ -1,11 +1,11 @@
-<div class="container">
+
 	<div class="row">
 		<% if @recipe.orders.present? %>
 			<% @recipe.orders.each do |order| %>
 				<div class="col-md-3">
-				<p>手順 <%= order.order_num %></p>
+				<p class="userbody-text">手順 <%= order.order_num %></p>
 
-				<%= image_tag order.order_image.to_s, size: '150x150' %>
+				<%= image_tag order.order_image.to_s, size: '150x150', :style => "border-radius: 5%;" %>
 				<p><%= link_to '削除', recipe_order_path(@recipe,order), method: :delete, class: "btn btn-danger btn-sm" %></p>
 				<p>作り方</p>
 				<%= order.order_body %>
@@ -13,4 +13,3 @@
 			<% end %>
 		<% end %>
 	</div>
-</div>

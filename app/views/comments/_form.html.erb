@@ -1,9 +1,12 @@
-<%= form_with(model: [recipe, comment] ) do |form| %>
-  <div>
-  </br>
-    <%= form.text_area :content, size: "130x5" %>
-  </div>
-  <div class="actions">
-    <%= form.submit "コメントをする" %>
-  </div>
-<% end %>
+<div class="cp_iptxt">
+	<label class="ef">
+		<%= form_with(model: [recipe, comment] ) do |form| %>
+		  <div>
+		    <%= form.text_area :content, size: "70x5" %>
+		  </div>
+		  <div class="actions">
+		    <%= form.submit "コメントをする" %>
+		  </div>
+		<% end %>
+	</label>
+</div>

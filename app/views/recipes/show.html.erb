@@ -1,56 +1,102 @@
-<div class="container">
 	<div class="row">
-		<h2><strong> <%= @recipe.title %></strong></h2>
-		</br>
-		<div class="col-md-4">
-			<p><%= attachment_image_tag @recipe, :image, fallback: 'noimage.jpg', size: '200x200', class: "recipe-image" %></p>
-			<p>閲覧数: <%= @recipe.impressionist_count %></p>
-		</div>
-
-		<div class="col-md-8">
-		<p>内容: <%= @recipe.body %></p>
-		<p>調理時間: <%= @recipe.time %></p>
-		<p>コスト: <%= @recipe.cost %></p>
-		<p>投稿した人: <%= link_to @recipe.user.name, user_path(@recipe.user_id) %></p>
-		</br>
-	<!-- お気に入り、編集ボタン -->
-		<div class="row">
-			<div class="col-md-6">
-				<% if @recipe.user_id != current_user.id %>
-					<% if @favo.empty? %>
-					<p class="btn btn-default">
-					<%= link_to "お気に入りに追加", recipe_favorites_path(@recipe.id), method: :post, 
-					:style => "text-decoration: none;" %>
-					</p>
-					<% end %>
+		<p class="sub-title"><strong> <%= @recipe.title %></strong>
+			<span class="userbody-text"><%= render 'recipes/tag_list', tag_list: @recipe.category_list %>
+			</span>
+			<span class="date-time"><%= @recipe.created_at.strftime("%Y年%m月%d日") %></span>
+			<% if user_signed_in? %>
+				<% if @favo.empty? %>
 				<% else %>
+					<label class="follow-name"><%= @recipe.title %> はお気に入り登録済みです!
+					</label>
+				<% end %>
+			<% end %>
+		</p>
+		</br></br>
+		<div class="col-md-3">
+			<% if @recipe.image.present? %>
+				<p><%= link_to attachment_url(@recipe, :image, :fill, 600, 600), data: {lightbox: "recipe-set"} do %>
+					<%= image_tag attachment_url(@recipe, :image, :fill, 250, 250), class: 'recipe-image'%>
+					<% end %>
+				</p>
+		<!-- light-box: ~~はグループ名で同名グループのイメージをpopで移動できる -->
+			<% else %>
+				<%= image_tag 'noimage.jpg', size: '220x220', :style => "border-radius: 5%;" %>
+			<% end %>
+
+			<p><span class="comment-count"><i class="far fa-comment-dots"></i><%= @comments_count %></span>閲覧数: <%= @recipe.impressionist_count %></p>
+		<% if user_signed_in? %>
+			<div id="likes_buttons_<%= @recipe.id %>">
+				<%= render partial: 'likes/like', locals: { recipe: @recipe, likes: @likes} %>
+			</div>
+		<% end %>
+		</div>
+	
+	<div class="col-md-6">
+		<div class="row recipe-box">
+			<div class="col-md-3">
+				<p class="recipe-show-th-text">内容</p>
+				<p class="recipe-show-th-text">調理時間</p>
+				<p class="recipe-show-th-text">コスト</p>
+				<p class="recipe-show-th-text">材料</p>
+			</div>
+			<div class="col-md-9">
+				<p class="recipe-show-text"><%= @recipe.body %></p>
+				<p class="recipe-show-text"><%= @recipe.time %>分</p>
+				<p class="recipe-show-text"><%= @recipe.cost %>円</p>
+				<p class="recipe-show-text"><%= simple_format(@recipe.material,:class => "recipe-show-text") %></p>
+			</div>
+		</div>
+			<p class="userbody-text">投稿した人: <%= link_to @recipe.user.name, user_path(@recipe.user_id) %>
+			</p></br>
+
+<!-- お気に入り、編集ボタン -->
+		<% if user_signed_in? %>
+			<% if @recipe.user_id != current_user.id %>
+					<% if @favo.empty? %>
+						<p class="btn btn-default">
+						<%= link_to "お気に入りに追加", recipe_favorites_path(@recipe.id), method: :post, :style => "text-decoration: none;" %>
+						</p>
+					<% end %>
+			<% else %>
+				<div class="text-right">
 					<p class="btn btn-default">
-					<%= link_to "レシピ編集", edit_recipe_path(@recipe.id), :style => "text-decoration: none;" %>
+					<%= link_to "編集", edit_recipe_path(@recipe.id), :style => "text-decoration: none;" %>
 					</p>
-					<p class="btn btn-default">
-					<%= link_to "削除", recipe_path(@recipe.id), method: :delete, 'data-confirm' => '削除しますか?', :style => "text-decoration: none;" %>
+					<p class="btn btn-danger btn-sm">
+					<%= link_to "削除", recipe_path(@recipe.id), method: :delete, 'data-confirm' => '削除しますか?', :style => "text-decoration: none; color: #FAFAFA;" %>
+					</p>
+				</div></br>
+			<% end %>
+		<% end %>
+	</div>
+	<% if user_signed_in? %>
+		<div class="col-md-3">
+		<p class="favo-user-title">お気に入り登録しているユーザー</p>
+		<% if @favorite.empty? %>
+			</br><p class="no-favo-user">お気に入り登録している人はいません</p>
+		<% else %>
+			<% @favorite.each do |favo| %>
+				<% if favo.user_id != current_user.id %>
+					<p><%= image_tag favo.user.profile_image.to_s, fallback: "no-image-people.png", size: "80x80", :style => "border-radius: 50%;" %>
+						<span class="favo-user-name"><%= favo.user.name %></span>
 					</p>
 				<% end %>
-			</div>
-	<!-- いいね機能 -->
-			<div class="col-md-6">
-				<div id="likes_buttons_<%= @recipe.id %>">
-				 <%= render partial: 'likes/like', locals: { recipe: @recipe, likes: @likes} %>
-				</div>
-			</div>
+			<% end %>
+		<% end %>
 		</div>
-		</div>
-	</div>
+	<% end %>
+</div>
+
 
 <!-- 作り方手順 -->
-<h3>作り方</h3>
-</br></br>
-<div class="container">
+<% if user_signed_in? %>
 	<div class="row">
+		<h3><strong>作り方</strong></h3>
+		</br>
 		<% @recipe.orders.each do |recipe| %>
 			<div class="col-md-3">
-				<p>手順<%= recipe.order_num %></p>
-				<p><%= image_tag recipe.order_image.to_s, size: '150x150', class: "recipe-image" %>
+				<p class="userbody-text">手順<%= recipe.order_num %></p>
+				<p><%= image_tag recipe.order_image.to_s, size: '180x180', class: "recipe-image" %>
 					<i class="fas fa-arrow-circle-right fa-2x"></i>
 				</p>
 				<p><%= recipe.order_body %></p>
@@ -59,18 +105,18 @@
 		<% end %>
 	</div>
 	<% if @recipe.user_id == current_user.id %>
-		<p class="text-right"><%= link_to '作り方編集', edit_recipe_order_path(@recipe), class: 'btn btn-danger' %>
-		</p>
+	<div class="row">
+			<p class="text-right"><%= link_to '作り方編集', edit_recipe_order_path(@recipe), class: 'btn btn-danger' %>
+			</p>
+	</div>
 	<% end %>
-</div>
+<% end %>
+
 
 <!-- コメント機能 -->
-<div class="container">
+
 	<div class="row">
-		<div class="col-md-12">
-		<div>
-		    <h3>コメント</h3>
-			</br>
+		<h3><strong>コメント</strong></h3>
 		    <div id="comments_area"><!-- #① -->
 		      <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
 		      <%= render partial: 'comments/index', locals: { comments: @comments } %>
@@ -79,7 +125,7 @@
 		      <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
 		      <%= render partial: 'comments/form', locals: { comment: @comment, recipe: @recipe } %>
 		    <% end %>
-		</div>
-		</div>
 	</div>
-</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>

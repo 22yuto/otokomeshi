@@ -2,7 +2,7 @@
 
 <div id="form-main clearfix">
   <div id="form-div">
-  <h2><strong>ログイン</strong></h2></br>
+  <p class="sub-title"><strong>ログイン</strong></p></br>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <p class="email">
@@ -15,9 +15,9 @@
     <div class="actions">
       <%= f.submit "Log in", id: "button-blue" %>
     </div>
-    </br></br>
-        <%= link_to "ログイン無し", root_path %>
-    <% end %>
+  <% end %>
     </br>
+    <%= link_to "ゲストでログイン", root_path %>
+  </div>
 </div>
-</div>
+

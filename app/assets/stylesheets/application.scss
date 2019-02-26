@@ -26,23 +26,49 @@
   color: none;
 }
 
+
+
 body {
+  height: 100%;
+  width: 100%;
 	font-weight: 900;
-	font-family: YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
+	font-family: 'century','Times New Roman','Baskerville','Optima','Palatino','Georgia','ヒラギノ明朝 Pro W3','Hiragino Mincho Pro','HGS明朝E','ＭＳ Ｐ明朝','MS PMincho',serif;
+  background: #FFF;
+  background-position: cover;
+}
+
+.container{
+  height: 100%;
+}
+
+.login-name {
+  text-align: right;
+}
+
+.login-name i {
+  text-align: right;
+  color: #2196F3;
+}
+
+.is-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
 }
 
 header {
 	width: 100%;
 }
 
-.header-nav {
-	margin-top: 20px;
+.date-time {
+  margin: 5px 0 0 15px;
+  font-size: 14px;
+  opacity: 0.8;
+  color: gray;
 }
 
-.header-nav span {
-	margin: 0 10px;
-	font-size: 10px;
-}
 
 .logo-text {
 	margin-top: 50px;
@@ -50,7 +76,7 @@ header {
 }
 
 .msg {
-  text-align: right;
+  text-align: left;
 }
 
 .back {
@@ -61,13 +87,26 @@ nav {
 	width: 100%;
 }
 
+.navbar.fixed {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index:24;
+}
+/*z-indexでナビに要素が埋め込まれる*/
+
 nav li {
 	color: white;
   margin-left: 20px;
 }
 
 .icons {
-  margin-left: 180px;
+  margin-left: 202px;
+}
+
+.icons p {
+  float: left;
 }
 
 .icons i {
@@ -78,14 +117,16 @@ nav li {
 }
 
 .icons i:hover {
-  color: red;
+  color:#cccccc;
 }
 .icon-text span {
   position: absolute;
-  top: 50px;
-  float: left;
   font-size: 10px;
   color: black;
+}
+
+.line-friend img{
+  margin-left: 120px;
 }
 
 footer {
@@ -95,6 +136,7 @@ footer {
 	color: #aaaaaa;
   line-height: 50px;
   height: 50px;
+  border-radius: 4px;
 }
 
 footer img {
@@ -104,10 +146,10 @@ footer img {
 /* 検索ボックス */
 
 .searchbox{
-  margin-left: 120px;
+  margin-left: 140px;
   margin-top: 4px;
   position: relative;
-  width: 500px;
+  width: 400px;
   background-color:#fff;
   border:1px solid #aaa;
   border-radius:6px;
@@ -140,10 +182,10 @@ footer img {
 }
 
 .searchbox2 {
-  margin-left: 500px;
+  margin-left: 530px;
   margin-top: 4px;
   position: relative;
-  width: 500px;
+  width: 400px;
   background-color:#fff;
   border:1px solid #aaa;
   border-radius:6px;
@@ -174,6 +216,11 @@ footer img {
 .search-btn:hover {
   background:#cccccc;
 }
+
+.search-recipe-text {
+  font-size: 20px;
+}
+
 
 /*ログイン画面*/
 

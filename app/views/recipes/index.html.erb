@@ -1,144 +1,227 @@
-<div class="container">
+
+
+<!-- メイン画像 -->
+
 	<div class="row">
 		<div class="main-image">
-		
-
-
-			<p>OTOKOMESHI</p>
-			<label>- Recipes post only guys -</label>
+			<p class="main-text"> You can post recipes</p>
+			<p class="main-text2"> Only Guys！</p>
 		</div>
 	</div>
+
+<% if user_signed_in? %>
+<div class="row">
+	<div class="popup" id="js-popup">
+	  <div class="popup-inner">
+	    <div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
+		    <p class="poptitle"><span class="popborder">本日の漢めし</span></p>
+		    <p class="rand-title-text"><%= @random.title %></p>
+		    <%= attachment_image_tag @random, :image, fallback: 'noimage.jpg', size: '400x400', class: "recipe-image" %>
+		    <%= button_to "コレに決める！", recipe_path(@random), method: :get, class:"btn-border" %>
+	  	</div>
+	  <div class="black-background" id="js-black-bg"></div>
+	</div>
+	<div class="otokogi">
+		 ボタン押下でレシピを決める!
+	<button id="js-show-popup" class="bnt-massage">
+		<img class="gogo" src="/assets/gogo.jpg">漢気CHANCE!
+		<span>漢気チャージ中...</span>
+	</button>
+	</div>
 </div>
+	<script type="text/javascript">
+		function popupImage() {
+		  var popup = document.getElementById('js-popup');
+		  if(!popup) return;
 
-<div class="container">
-      
-    </div>
+		  var blackBg = document.getElementById('js-black-bg');
 
+		  var blackBg = document.getElementById('js-black-bg');
+		  var closeBtn = document.getElementById('js-close-btn');
+		  var showBtn = document.getElementById('js-show-popup');
 
+		  closePopUp(blackBg);
+		  closePopUp(closeBtn);
+		  closePopUp(showBtn);
+		  function closePopUp(elem) {
+		    if(!elem) return;
+		    elem.addEventListener('click', function() {
+		      popup.classList.toggle('is-show');
+		    });
+		  }
+		}
+		popupImage();
+	</script>
+<% end %>
 
 <!-- レシピindex -->
-<div class="container">
-	<div class="row">
+
+<div class="row">
 		<div class="col-md-8">
 			<div class="row back">
-				<h3><strong>新着レシピ</strong></h3></br>
-					<% @recipes.each do |recipe| %>
-							<div class="col-md-3">
+				<h2 ><strong>新着レシピ</strong></h2></br>
+					<% @recipes.each_with_index do |recipe, i| %>
+						<div class="col-md-3">
+							<% if i == 0 %>
 								<%= link_to recipe_path(recipe.id) do %>
-								<p> <%= attachment_image_tag recipe, :image, fallback: 'noimage.jpg', size: '120x120', class: "recipe-image" %></p>
-								<p> <%= recipe.title %></p>
-								<p> <%= render 'tag_list', tag_list: recipe.category_list %></p>
+									<div class="first-recipe">
+										<img class="new-ranking-image" src="/assets/new6.png">
+										<p> <%= attachment_image_tag recipe, :image, fallback: 'noimage.jpg', size: '180x180', class: "recipe-image" %></p>
 								<% end %>
-							</div>
+									<div class="recipe-text-over">
+										<p class="new-recipe-title"> <%= recipe.title %></p>
+										<p> <%= render 'tag_list', tag_list: recipe.category_list %></p>
+										<p class="userbody-text"> <%= recipe.body %></p>
+									</div>
+									</div>
+							<% end %>
+							<% if i >= 1 %>
+								<%= link_to recipe_path(recipe.id) do %>
+								<div class="second-image">
+									<p> <%= attachment_image_tag recipe, :image, fallback: 'noimage.jpg', size: '120x120', class: "recipe-image" %></p>
+								<% end %>
+									<div class="recipe-text-over">
+										<p class="userbody-text"> <%= recipe.title %></p>
+										<p> <%= render 'tag_list', tag_list: recipe.category_list %></p>
+									</div>
+								</div>
+							<% end %>
+						</div>
 					<% end %>
-			</div></br>
-<!-- ユーザーお気に入り一覧 -->
+			</div>
+
 			<div class="row back">
-			<% if user_signed_in? %>
+				<h2><strong>人気のレシピ</strong></h2>
+					<% @ranking.each_with_index do |recipe, i|%>
+					<div class="col-md-3">
+						<div class="first-like-recipe">
+						<% if i == 0 %>
+							<%= link_to recipe_path(recipe.id) do %>
+							<img class="ranking-image" src="/assets/ranking2.png">
+								<p> <%= attachment_image_tag recipe, :image, fallback: 'noimage.jpg', size: '180x180', class: "first-recipe-image" %></p>
+							<% end %>
+							<div class="recipe-text-over">
+								<p class="new-recipe-title"> <%= recipe.title %></p>
+								<p> <%= render 'tag_list', tag_list: recipe.category_list %></p>
+								<p class="userbody-text"> <%= recipe.body %></p>
+							</div>
+						</div>
+						<% end %>
+						<% if i >= 1 %>
+						<%= link_to recipe_path(recipe.id) do %>
+						<div class="second-image">
+							<p> <%= attachment_image_tag recipe, :image, fallback: 'noimage.jpg', size: '120x120', class: "recipe-image" %></p>
+						<% end %>
+							<div class="recipe-text-over">
+								<p class="userbody-text"> <%= recipe.title %></p>
+								<p> <%= render 'tag_list', tag_list: recipe.category_list %></p>
+							</div>
+						</div>
+					</div>
+						<% end %>
+			</div>
+					<% end %>
+		</div>
+<!-- ユーザーお気に入り一覧 -->
+	<!-- <div class="row back">
+		<% if user_signed_in? %>
 				<h3><strong>お気に入り</strong></h3></br>
 					<% current_user.favorites.each do |favorite| %>
 					<div class="col-md-3">
 						<%= link_to recipe_path(favorite.recipe_id) do %>
 							<p> <%= attachment_image_tag favorite.recipe, :image, fallback: 'no-image.png', size: '120x120', class: "recipe-image" %></p>
-							<p> <%= favorite.recipe.title %></p>
+							<p class="userbody-text"> <%= favorite.recipe.title %></p>
 						<% end %>
 					</div>
 					<% end %>
-			</div></br>
-			<div class="row back">
-				<div class="col-md-12">
-			<h3><strong>フォロワー</strong></h3></br>
-			<div class="row">
-				<% current_user.followings.each do |follower| %>
-					<div class="col-md-3">
-						<%= link_to user_path(follower) do %>
-							<p> <%= image_tag follower.profile_image.to_s, size: '120x120', class: "recipe-image" %></p>
-							<p> <%= follower.name %></p>
-						<% end %>
-					</div>
-				<% end %>
-			</div>
-			<h3><strong>フォロワーレシピ</strong></h3></br>
+	</div> -->
+
+	<div class="row back">
+		<div class="col-md-12">
+			<h3><strong>フォロワー投稿レシピ</strong></h3></br>
 			<div class="row">
 				<% current_user.followers_recipes.each do |recipe| %>
 					<div class="col-md-3">
 						<%= link_to recipe_path(recipe) do %>
 							<p> <%= attachment_image_tag recipe, :image, fallback: 'noimage.jpg', size: '120x120', class: "recipe-image" %></p>
-							<p> <%= recipe.title %></p>
 						<% end %>
+						<div class="recipe-text-over">
+							<p class="userbody-text"> <%= recipe.title %></p>
+							<p> <%= render 'tag_list', tag_list: recipe.category_list %></p>
+						</div>
 					</div>
 				<% end %>
-
 			</div>
 		</div>
 	</div>
-		</div>
+	</div>
 	<div class="col-md-1"></div>
-		<div class="col-md-3 back">
+	<div class="col-md-3 back">
 <!-- カテゴリー一覧 -->
-	</br>
-			<div class="categories">
-			<div class="row">
-			<h5 class="category-recipe"><strong>カテゴリー</strong></h5>
-			</div>
-				<h5><i class="fas fa-utensils">ご飯もの</i></h5>
+		<div class="row category-box">
+
+			<p>
+				<p class="userbody-text">ご飯もの</p></br>
 					<% @rice_tag_recipes.each do |tag| %>
 						<%= link_to recipe_path(tag.id) do %>
 						<div class="row">
 							<div class="col-md-4">
-							<%= attachment_image_tag tag, :image, fallback: 'noimage.jpg', size: '80x80', class: "recipe-image" %>
+							<%= attachment_image_tag tag, :image, fallback: 'noimage.jpg', size: '90x90', class: "recipe-image" %>
 							</div>
 						<% end %>
 							<div class="col-md-8">
 								<div class="text-over">
-									<p> <%= tag.title %></p>
-									<p><%= tag.body %></p>
-									<p><%= render 'tag_list', tag_list: tag.category_list %></p>
+									<p class="category-title-text"> <%= tag.title %></p>
+									<p class="category-body-text"><%= tag.body %></p>
+									<p class="category-tag-text"><%= render 'tag_list', tag_list: tag.category_list %></p>
 								</div>
 							</div>
 						</div></br>
 					<% end %>
-					<div class="paginate"><%= paginate @recipes %></div>
+						<div class="paginate"><%= paginate @recipes %></div>
 				</br>
-				<h5><i class="fas fa-carrot">野菜</i></h5>
+				<p class="userbody-text">野菜</p></br>
 					<% @vegetable_tag_recipes.each do |tag| %>
 						<%= link_to recipe_path(tag.id) do %>
 						<div class="row">
 							<div class="col-md-4">
-							<%= attachment_image_tag tag, :image, fallback: 'no-image.png', size: '80x80', class: "recipe-image" %>
+							<%= attachment_image_tag tag, :image, fallback: 'no-image.png', size: '90x90', class: "recipe-image" %>
 							</div>
 						<% end %>
 							<div class="col-md-8">
 								<div class="text-over">
-									<p> <%= tag.title %></p>
-									<p><%= tag.body %></p>
-									<p><%= render 'tag_list', tag_list: tag.category_list %></p>
+									<p class="category-title-text"> <%= tag.title %></p>
+									<p class="category-body-text"><%= tag.body %></p>
+									<p class="category-tag-text"><%= render 'tag_list', tag_list: tag.category_list %></p>
 								</div>
 							</div>
 						</div></br>
 					<% end %>
-					<div class="paginate"><%= paginate @recipes %></div>
+						<div class="paginate"><%= paginate @recipes %></div>
 				</br>
-				<h5><i class="fas fa-mug-hot">スープ</i></h5>
+				<p class="userbody-text">スープ</p></br>
 					<% @soup_tag_recipes.each do |tag| %>
 						<%= link_to recipe_path(tag.id) do %>
 						<div class="row">
 							<div class="col-md-4">
-							<%= attachment_image_tag tag, :image, fallback: 'no-image.png', size: '80x80', class: "recipe-image" %>
+								<%= attachment_image_tag tag, :image, fallback: 'no-image.png', size: '90x90', class: "recipe-image" %>
 							</div>
 						<% end %>
 							<div class="col-md-8">
 								<div class="text-over">
-									<p> <%= tag.title %></p>
-									<p><%= tag.body %></p>
-									<p><%= render 'tag_list', tag_list: tag.category_list %></p>
+									<p class="category-title-text"> <%= tag.title %></p>
+									<p class="category-body-text"><%= tag.body %></p>
+									<p class="category-tag-text"><%= render 'tag_list', tag_list: tag.category_list %></p>
 								</div>
 							</div>
 						</div></br>
 					<% end %>
-					<div class="paginate"><%= paginate @recipes %></div>
-			</div>
-			<% end %>
+				<div class="paginate"><%= paginate @recipes %></div>
+			</p>
 		</div>
+		<% end %>
 	</div>
 </div>
+</div>
+
+

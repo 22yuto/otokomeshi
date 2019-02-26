@@ -1,14 +1,18 @@
+<div class="order-box">
+<div class="cp_iptxt">
+	<label class="ef">
+		<%= simple_form_for @new_order, :url => { :controller => :orders, :action => :create }, remote: true do |f| %>
+			<p class="userbody-text">手順</p>
+			<%= f.number_field :order_num, min:1, max:100, size: '5' %>
 
-<%= simple_form_for @new_order, :url => { :controller => :orders, :action => :create }, remote: true do |f| %>
-	<p>手順</p>
-	<%= f.number_field :order_num, min:1, max:100 %>
+			<p class="userbody-text">イメージ</p>
+			<%= f.file_field :order_image %>
 
-	<p>イメージ</p>
-	<%= f.file_field :order_image %>
+			<p class="userbody-text">作り方</p>
+			<%= f.text_area :order_body %>
 
-	<p>作り方</p>
-	<%= f.text_area :order_body %>
-
-	<%= f.button :submit, "追加", class: "btn btn-default" %>
-
-<% end %>
+			<%= f.button :submit, "追加", class: "btn btn-default" %>
+		<% end %>
+	</label>
+</div>
+</div>

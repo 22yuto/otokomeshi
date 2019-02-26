@@ -1,28 +1,32 @@
-<h3><strong>フォロー</strong></h3></br>
-<div class="container">
+
 	<div class="row">
-		<div class="col-md-3">
+		<p class="sub-title"><strong>フォロー一覧</strong></p></br>
 		<% @users.each do |user| %>
-		  <%= link_to user_path(user.id) do %>
-		  <p> <%= user.name %></p>
-		  <p> <%= image_tag user.profile_image.to_s, size: '80x80', :style => "border-radius: 5%;" %></p>
-		  <% end %>
+		<div class="row">
+		  	<div class="col-md-2">
+		  	<%= link_to user_path(user.id) do %>
+			  <p> <%= image_tag user.profile_image.to_s, size: '150x150', :style => "border-radius: 50%;" %></p></br>
+			<% end %>
+			</div>
+			<div class="col-md-10">
+			  <p class="follower-name"> <%= user.name %>
+			  	<span class="follower-email-text"><%= user.email %></span>
+			  </p>
+			  <p class="follower-body-text"><%= user.introduction %></p></br>
 		    <% if current_user != user %>
 		        <% if user.followed_by?(current_user) %>
-		            <p class="btn btn-danger btn-xs">
-		            	<%=link_to "フォロー解除", user_relationships_path(user.id), method: :delete, "data-confirm" => 'フォローリストから外しますか？', 
-		            	:style => "color: white; text-decoration: none;" %></p>
+		            <p class="btn btn-danger btn-xs delete-follower">
+		            	<i class="fas fa-trash-alt fa-lg"></i><%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete, "data-confirm" => 'フォローリストから外しますか？', 
+		            	:style => "text-decoration: none; color: #FAFAFA;" %></p>
 		        <% else %>
 		            <p class="btn btn-default btn-xs">
 		            	<%=link_to "フォローする", user_relationships_path(user.id), method: :post, :style => "text-decoration: none;" %></p>
 		        <% end %></br>
 		    <% end %></br>
-		<% end %>
+		    </br></br>
+			</div>
 		</div>
-		<div class="col-md-9">
-			<% @users.each do |user| %>
-				<%= user.introduction %>
-			<% end %>
+		<% end %>
+		<div class="btn btn-default"><%= link_to '🔙戻る', user_path(@user.id), style: "text-decoration: none;", class: "back-btn" %>
 		</div>
 	</div>
-</div>

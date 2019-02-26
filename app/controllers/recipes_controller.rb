@@ -39,7 +39,12 @@ impressionist :actions=> [:show]
   	# @recipes = Recipe.where(user_id: current_user.id).page(params[:page]).reverse_order
     @recipes = Recipe.where(open_flg: true).page(params[:page]).per(4).reverse_order
     # @favo = Favorite.where(user_id: current_user.id)
-    @recipe = Recipe.where('created_at > ?', 1.day.ago).last
+    # @recipe = Recipe.where('created_at > ?', 1.day.ago).last
+    @ranking = Recipe.order('impressions_count DESC').take(4)
+    @random = Recipe.where('id >= ?', rand(Recipe.first.id..Recipe.last.id)).first
+    # if Recipe.where(id: @random) == 1
+    #   puts "あたり"
+    # end
     @rice_tag_recipes = Recipe.tagged_with(["ご飯もの"]).page(params[:page]).per(2).reverse_order
     @vegetable_tag_recipes = Recipe.tagged_with(["野菜"]).page(params[:page]).per(2).reverse_order
     @soup_tag_recipes = Recipe.tagged_with(["スープ"]).page(params[:page]).per(2).reverse_order
@@ -52,10 +57,14 @@ impressionist :actions=> [:show]
 
   def show
   	@recipe = Recipe.find(params[:id])
-    @favo = current_user.favorites.where(recipe_id: @recipe.id)
+    if user_signed_in?
+      @favo = current_user.favorites.where(recipe_id: @recipe.id)
+      @favorite = @recipe.favorites.limit(4)
+    end
     impressionist(@recipe, nil, unique: [:session_hash])
     @comment = Comment.new
     @comments = @recipe.comments
+    @comments_count = @comments.count
   end
 
   def edit

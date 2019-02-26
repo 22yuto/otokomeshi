@@ -1,18 +1,20 @@
-<h3><strong>フォロワー</strong></h3></br>
-<div class="container">
+
 	<div class="row">
-		<div class="col-md-3">
+	<p class="sub-title"><strong>フォロワー</strong></p></br>
 		<% @users.each do |user| %>
+		<div class="row">
+			<div class="col-md-2">
 		  	<%= link_to user_path(user.id) do %>
-				  <p> <%= user.name %></p>
-				  <p> <%= image_tag user.profile_image.to_s, size: '80x80', :style => "border-radius: 5%;" %></p>
+				<p> <%= image_tag user.profile_image.to_s, size: '150x150', :style => "border-radius: 50%;" %></p></br>
 		  	<% end %>
+		  	</div>
+		  	<div class="col-md-10">
+			  	<p class="follower-name"><%= user.name %>
+			  		<span class="follower-email-text"><%= user.email %></span>
+			  	</p>
+			  	<p class="follower-body-text"><%= user.introduction %></p></br>
+		  	</div>
+		</div>
 		<% end %>
-		</div>
-		<div class="col-md-9">
-			<% @users.each do |user| %>
-				<%= user.introduction %>
-			<% end %>
-		</div>
 	</div>
-</div>
+	<div class="btn btn-default pull-right"><%= link_to '🔙戻る', user_path(@user.id), style: "text-decoration: none;", class: "back-btn" %></div>

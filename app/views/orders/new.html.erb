@@ -1,17 +1,13 @@
-<h3><strong>レシピ投稿2</strong></h3>
-<div class="container">
+
 	<div class="row">
-		<h4><strong>作り方</strong></h4>
+		<h3><strong>レシピ投稿2</strong></h3>
 		<div id="orders">
-
 			<%= render @new_order %>
-
 		</div>
-		</br></br>
-		<%= link_to "作り方を追加する", new_recipe_order_path, remote: true, class: "btn btn-default" %>
+		</br>
+		<%= link_to "手順の追加", new_recipe_order_path, remote: true, class: "btn btn-default" %>
 		</br></br>
 		<div id="order-form"></div>
-
+	</br></br>
 		<%= link_to "登録確認画面へ", recipe_confirms_path(@recipe.id), class: "btn btn-primary" %>
 	</div>
-</div>

@@ -1,26 +1,31 @@
-<div class="container">
-<% if @user.id == current_user.id %>
-	<h3><strong>マイページ</strong></h3></br>
-	<% else %>
-	<h3><strong>ユーザーページ</strong></h3></br>
-<% end %>
+
 	<div class="row">
+<% if @user.id == current_user.id %>
+	<p class="sub-title"><strong>マイページ</strong></p></br>
+<% else %>
+	<p class="sub-title"><strong>ユーザーページ</strong>
+		<% if @user.followed_by?(current_user) %>
+			<label class="follow-name"><%= @user.name %>さんをフォローしています</label>
+		<% end %>
+	</p></br>
+<% end %>
 		<div class="col-md-3">
-			<%= image_tag @user.profile_image.to_s, size: '150x150', :style => "border-radius: 5%;" %>
+			<%= image_tag @user.profile_image.to_s, size: '200x200', :style => "border-radius: 50%;" %>
 		</div>
-		<div class="col-md-5">
-			<p>ニックネーム: <%= @user.name %></p>
-			<p>メール: <%= @user.email %></p>
-			<p>ひとこと: <%= @user.introduction %></p>
+		<div class="col-md-9">
+			<p class="username-text"><%= @user.name %></p>
+			<p class="useremail-text"><%= @user.email %></p></br>
+			<p class="userbody-text"><%= @user.introduction %></p>
+		</br>
 <!-- フォローボタン -->
 			<span class="btn-social-long-twitter">
-				<span><%=link_to "フォロー", follows_user_path(@user.id),
+				<span><i class="fab fa-twitter fa-lg"></i><%=link_to "フォロー", follows_user_path(@user.id),
 				 :style => "color: white; text-decoration: none;" %>
 				</span>
 			    <%= @user.followings.count %>
 			</span>
 			<span class="btn-social-long-twitter">
-				<span><%=link_to "フォロワー", followers_user_path(@user.id), :style => "color: white; text-decoration: none;" %>
+				<span><i class="fab fa-twitter fa-lg"></i><%=link_to "フォロワー", followers_user_path(@user.id), :style => "color: white; text-decoration: none;" %>
 				</span>
 				   <%= @user.followers.count %>
 			</span>
@@ -28,42 +33,42 @@
 <!-- フォロー追加解除 -->
 		<% if current_user != @user %>
 	    	<% if @user.followed_by?(current_user) %>
-	        	<p class="btn btn-danger btn-sm">
-	        		<%=link_to "フォロー解除", user_relationships_path(@user.id), method: :delete, "data-confirm" => 'フォロー解除しますか？', :style => "color: white; text-decoration: none;" %></p>
+	        	<p class="btn btn-danger btn-sm mypage-edit">
+	        		<i class="fas fa-trash-alt fa-lg"></i><%=link_to "フォロー解除", user_relationships_path(@user.id), method: :delete, "data-confirm" => 'フォロー解除しますか？', :style => "text-decoration: none; color: #FAFAFA;" %></p>
 	    	<% else %>
-	    	<span class="btn-social-long-twitter"><i class="fab fa-twitter fa-lg"></i>
-	        	<span>
-	        	<%=link_to "フォローする", user_relationships_path(@user.id), method: :post,
-	        	 :style => "text-decoration: none;" %>
+	    		<span class="btn btn-default btn-sm mypage-edit">
+	        	<%=link_to user_relationships_path(@user.id), method: :post,
+	        	 :style => "text-decoration: none;" do %>
+	        		<i class="fas fa-user-plus fa-lg"></i>
+	        	<% end %>
 	        	</span>
-	        </span>
 	    	<% end %>
 		<% end %>
-<!-- ------------- -->
-		</div>
-		<div class="col-md-4">
+<!-- マイページeditボタン -->
 			<% if @user.id == current_user.id %>
-			<span class="btn btn-danger"> <%= link_to '編集', edit_user_path(@user.id), :style => "color: white; text-decoration: none;" %>
-			</span>
+				<span class="btn btn-default btn-sm mypage-edit"> <%= link_to edit_user_path(@user.id) do %>
+					<i class="fas fa-user-edit fa-lg"></i>
+					<% end %>
+				</span>
 			<% end %>
 		</div>
 	</div>
-</div>
 </br></br>
-<div class="container">
+
 	<div class="row">
-		<h4><strong>レシピ一覧</strong></h4></br>
+		<p class="sub-title"><strong><%= @user.name %>さんの投稿レシピ</strong></p></br>
 		<% @recipes.each do |recipe| %>
-			<div class="col-md-2">
+			<div class="col-md-3">
 				<%= link_to recipe_path(recipe.id) do %>
-				<p><%= recipe.title %></p>
-				<%= attachment_image_tag recipe, :image, format: 'jpg', fallback: 'noimage.jpg', size: '75x75', class: "recipe-image" %></br></br>
+					<%= attachment_image_tag recipe, :image, format: 'jpg', fallback: 'noimage.jpg', size: '110x110', class: "recipe-image" %>
+					<p class="userbody-text"><%= recipe.title %></p>
+				</br>
 				<% end %>
 			</div>
 		<% end %>
 	</div>
 	<%= paginate @recipes %>
-</div>
+
 
 
 

@@ -1,14 +1,19 @@
-<div class="container">
+
 	<div class="row">
-		<h3><strong>漢飯とは？</strong></h3>
-		<img src="/assets/otokomeshitoha.jpg">
-		<h4 class="about-header">漢めし</h4>
-		<p class="about-text">読み方 : おとこめし</p>
-		<p class="about-text">別表記 : 男飯</p></br>
-		<p class="about-text">調理がさほど難しくなく、男性の多くにとって好物となり得るような種類の料理を総称した呼び名。</br></br>
-			・面倒くさいから手っ取り早く作りたい、でも</br>
-			　美味しいものが食べたい、コストを抑えたい</br></br>
-			そんな男性向けの男飯限定のレシピサイトが『　<strong>漢めし</strong>　』である。</p>
+	<p class="sub-title"><strong>漢めしとは？</strong></p></br>
+		<div class="col-md-7">
+			<h4 class="about-header">漢めし</h4></br>
+			<p class="about-text">読み方 : おとこめし</p>
+			<p class="about-text">別表記 : 男飯</p></br>
+			<p class="about-text">調理がさほど難しくなく、男性の多くにとって好物となり得るような種類の料理を総称した呼び名。</br></br>
+				・面倒くさいから手っ取り早く作りたい！</br>
+				・美味しいものが食べたい、コストを抑えたい</br></br>
+				そんな男性向けの男飯限定のレシピサイトが『　<span>漢めし</span>　』である。</p>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-4">
+			<img class="about-image" src="/assets/neet_man2.png" width="300" height="300">
+		</div>
 	</div>
 	<% if user_signed_in? %>
 	<% else %>
@@ -19,4 +24,3 @@
 		</div>
 	</div>
 	<% end %>
-</div>

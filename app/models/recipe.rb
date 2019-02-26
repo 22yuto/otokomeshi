@@ -10,7 +10,7 @@ class Recipe < ApplicationRecord
 	has_many :orders, dependent: :destroy
 	accepts_nested_attributes_for :orders, allow_destroy: true
 
-	is_impressionable
+	is_impressionable counter_cache: true
 
 	has_many :favorites, dependent: :destroy
 

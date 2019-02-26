@@ -15,9 +15,15 @@
 }
 
 .about-text {
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 700;
+  opacity: 0.8;
 }
+
+.about-image {
+  margin-top: 80px;
+}
+
 
 .main-image {
   width: 100%;
@@ -39,36 +45,52 @@
 }
 
 
-.main-image p {
+.main-image .main-text {
   font-family: 'ヒラギノ角ゴ Std W8';
   font-size: 30px;
   position: absolute;
-  top: 300px;
-  right: 130px;
+  top: 50px;
+  left: 60px;
+  font-weight: 600;
+  color: #FAFAFA;
+  opacity: 0.7;
+}
+
+.main-image .main-text2 {
+  font-family: 'ヒラギノ角ゴ Std W8';
+  font-size: 40px;
+  position: absolute;
+  top: 100px;
+  left: 60px;
   font-weight: 600;
   color: #FAFAFA;
   border-bottom: 2px solid #FF0033;
   opacity: 0.9;
 }
 
-.main-image label {
-  font-family: 'ヒラギノ角ゴ Std W8';
-  font-size: 15px;
-  position: absolute;
-  font-weight: 100;
-  top: 350px;
-  right: 140px;
-  color: #FAFAFA;
-  opacity: 0.8;
+
+.category-title-text {
+  font-size: 18px;
+  margin-left: 20px;
 }
 
+.category-body-text {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-left: 20px;
+}
+
+ .category-tag-text {
+  margin-left: 20px;
+ }
 
 
 .paginate {
   text-align: right;
 }
 
-h3 {
+h2 {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
     color: #444;
     background: #f4f4f4;
     font-size: 20px;
@@ -97,9 +119,37 @@ h3 {
     }
 }
 
-.categories {
-  margin-right: 35px;
+h3 {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
+    color: #444;
+    background: #f4f4f4;
+    font-size: 20px;
+    position: relative;
+    padding: 10px 0 2px 28px;
+    &:before, &:after{
+        content: "";
+        position: absolute;
+        margin: auto;
+    }
+    &:before{
+        width: 12px;
+        height: 12px;
+        top: 0;
+        left: 14px;
+        background: #d14;
+        transform: rotate(50deg);
+    }
+    &:after{
+        width: 8px;
+        height: 8px;
+        top: 18px;
+        left: 6px;
+        background: #d14;
+        transform: rotate(20deg);
+    }
 }
+
+
 
 .category-recipe {
     color: #444;
@@ -130,9 +180,32 @@ h3 {
     }
 }
 
+.category-box {
+    padding: 0 1em;
+    margin: 2em 0;
+    color: #5d627b;
+    background: white;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+
+.category-box p {
+    margin: 0;
+    padding: 5px 5px;
+}
+
 .text-over {
   width: 100%;
-  text-align: left;
+  overflow: hidden;
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.recipe-text-over {
+  width: 100%;
+  margin-left: 10px;
   overflow: hidden;
   p {
     overflow: hidden;
@@ -175,5 +248,278 @@ h3 {
   border-radius: 10px;
 }
 
+.first-recipe-image {
+  border-radius: 10px;
+}
+
+.first-like-recipe {
+  position: relative;
+  margin-top: 20px;
+}
+
+.new-ranking-image {
+  position: absolute;
+  top: -3px;
+  left: 10px;
+  width: 50px;
+  height: 50px;
+}
+
+.ranking-image {
+  position: absolute;
+  top: -8px;
+  left: -5px;
+  width: 45px;
+  height: 45px;
+}
+
+.index-username {
+  margin-left: 48px;
+}
+
+
+
+.new-recipe-title {
+  font-size: 26px;
+  opacity: 0.9;
+}
+
+.second-image {
+  border-radius: 10px;
+  margin-left: 35px;
+}
+
+
+
+/*漢気ボタンポップアップ*/
+
+.otokogi {
+  margin-left: 930px;
+  margin-top: 5px;
+}
+
+
+.popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: .6s;
+}
+.popup.is-show {
+  opacity: 1;
+  visibility: visible;
+}
+.popup-inner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 80%;
+  max-width: 600px;
+  padding: 50px;
+  background-color: #fff;
+  z-index: 2;
+}
+.popup-inner img {
+  width: 100%;
+}
+.close-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  cursor: pointer;
+}
+.close-btn i {
+  font-size: 20px;
+  color: #333;
+}
+.black-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.8);
+  z-index: 1;
+  cursor: pointer;
+}
+
+
+/*漢気ボタンCSS*/
+
+.rand-title-text {
+  font-size: 38px;
+  opacity: 0.9;
+}
+
+.bnt-massage {
+  display: inline-block;
+  min-width: 130px;
+  text-align: center;
+  background-color: #000;
+  font-size: 20px;
+  color: #FFF;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 16px 10px 10px;
+  position: relative;
+  transition: .9s;
+  border: 1px solid gray;
+}
+
+
+.bnt-massage span {
+  display: block;
+  position: absolute;
+  background-color: #d9385f;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 0 0 8px 0;
+  z-index: -1;
+  transition: .5s;
+}
+
+.bnt-massage:hover  {
+  border-radius: 8px 0 0;
+}
+
+.bnt-massage:hover span {
+  transform: translateY(50px);
+}
+
+.gogo {
+  width: 40px;
+  height: 25px;
+}
+
+
+/*ポップアップ詳細へのボタン*/
+.btn-border {
+  display: inline-block;
+  max-width: 180px;
+  margin-left: 350px;
+  margin-top: 20px;
+  border: 2px solid #9ec34b;
+  font-size: 16px;
+  color: #9ec34b;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: .4s;
+}
+
+.btn-border:hover {
+  background-color: #9ec34b;
+  border-color: #cbe585;
+  color: #FFF;
+}
+
+.poptitle {
+  font-size: 30px;
+}
+
+.poptitle span {
+  border-bottom: 2px solid black;
+}
+
+/*レシピshow*/
+
+.comment-count {
+  margin-right: 30px;
+  margin-left: 3px;
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+.recipe-show-th-text {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.recipe-show-text {
+  margin-left: 35px;
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+.recipe-box {
+    padding: 0.5em 1em;
+    margin: 1em 0;
+    background: white;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+.recipe-box p {
+    margin: 0; 
+    padding: 0;
+}
+
+
+/*編集フォーム*/
+
+.cp_iptxt {
+  position: relative;
+  width: 80%;
+  margin: 40px 3%;
+}
+.cp_iptxt input[type='text'], .cp_iptxt textarea,
+ .cp_iptxt input[type='email'] {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.3em;
+  transition: 0.3s;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  border: 1px solid #1b2538;
+  border-radius: 4px;
+}
+
+.cp_iptxt input[type='number'] {
+  box-sizing: border-box;
+  padding: 0.3em;
+  transition: 0.3s;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  border: 1px solid #1b2538;
+  border-radius: 4px;
+}
+
+
+.ef input[type='text']:focus {
+  border: 1px solid #da3c41;
+  outline: none;
+  box-shadow: 0 0 5px 1px rgba(218,60,65, .5);
+}
+
+.ef textarea:focus {
+  border: 1px solid #da3c41;
+  outline: none;
+  box-shadow: 0 0 5px 1px rgba(218,60,65, .5);
+}
+
+.ef input[type='email']:focus {
+  border: 1px solid #da3c41;
+  outline: none;
+  box-shadow: 0 0 5px 1px rgba(218,60,65, .5);
+}
+
+.ef input[type='number']:focus {
+  border: 1px solid #da3c41;
+  outline: none;
+  box-shadow: 0 0 5px 1px rgba(218,60,65, .5);
+}
 
 
