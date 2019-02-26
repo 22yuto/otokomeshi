@@ -9,14 +9,35 @@
   color: none;
 }
 
+.back-btn {
+  font-size: 15px;
+  text-align: right;
+}
+
+
+.username-text {
+  font-size: 50px;
+}
+
+.useremail-text {
+  font-size: 20px;
+  opacity: 0.7;
+}
+
+.userbody-text {
+  font-size: 20px;
+  opacity: 0.9;
+}
+
 .btn-social-long-twitter {
+  margin-right: 20px;
   color: #FFF;/*文字・アイコン色*/
   border-radius: 7px;/*角丸に*/
   display: inline-block;
   height: 30px;/*高さ*/
   width: 100px;/*幅*/
   text-align: center;/*中身を中央寄せ*/
-  font-size: 15px;/*文字のサイズ*/
+  font-size: 12px;/*文字のサイズ*/
   line-height: 30px;/*高さと合わせる*/
   vertical-align: middle;/*垂直中央寄せ*/
   background: #1da1f3;
@@ -29,7 +50,7 @@
   font-size: 20px;
 }
 
-.btn-social-long-twitter span {
+/*.btn-social-long-twitter span {
   display:inline-block;
   transition: .5s;
 }
@@ -37,4 +58,78 @@
 .btn-social-long-twitter:hover span {
   -webkit-transform: rotateX(360deg);
   transform: rotateX(360deg);
+}*/
+
+.mypage-edit {
+  margin-left: 100px;
+}
+
+.follow-name {
+  margin-left: 200px;
+}
+
+
+.follow-name{
+    color: #444;
+    font-size: 15px;
+    opacity: 0.8;
+    position: relative;
+    padding: 0 0 2px 32px;
+    &:before, &:after{
+        content: "";
+        position: absolute;
+        bottom: 0;
+        width: 12px;
+        height: 12px;
+        border: 2px solid #d14;
+        margin: auto;
+    }
+    &:before{
+        top: -6px;
+        left: 0px;
+        animation: spin 4s linear infinite;
+    }
+    &:after{
+        top: 6px;
+        left: 6px;
+        animation: spin 4s linear infinite;
+    }
+}
+
+@keyframes spin{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+.sub-title {
+    color: #444;
+    font-size: 30px;
+    line-height: 1.6em;
+    padding: 0 0 2px 12px;
+    border-left: 4px solid #444;
+    border-bottom: 1px solid #888;
+}
+
+.follower-name {
+  font-size: 30px;
+}
+
+.follower-email-text {
+  font-size: 15px;
+  opacity: 0.7;
+  margin-left: 10px;
+}
+
+.follower-body-text {
+  font-size: 15px;
+  opacity: 0.9;
+  margin-left: 10px;
+}
+
+.delete-follower {
+  margin-left: 10px;
 }

@@ -1,6 +1,6 @@
 <div id="form-main clearfix">
   <div id="form-div">
-  <h2><strong>新規登録</strong></h2></br>
+  <p class="sub-title"><strong>新規登録</strong></p></br>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
@@ -15,10 +15,11 @@
     </p>
 
     <p class="text">
-      <p>パスワード<%= f.password_field :password, autocomplete: "new-password", class: "validate[required,length[6,300]] feedback-input", id: "comment", placeholder: "Password" %>
+      <p>パスワード
         <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> 文字以上)</em>
-      <% end %><br />
+          <em>(<%= @minimum_password_length %> 文字以上)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: "validate[required,length[6,300]] feedback-input", id: "comment", placeholder: "Password" %>
       </p>
     </p>
 
@@ -30,8 +31,6 @@
       <%= f.submit "Sign up", id: "button-blue" %>
     </div>
   <% end %></br>
-
-  <%= render "devise/shared/links" %>
-
   </div>
 </div>
+</br></br>

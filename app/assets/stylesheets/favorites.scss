@@ -1,3 +1,37 @@
 // Place all the styles related to the favorites controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: none;
+}
+
+.no-favo-user {
+	font-size: 15px;
+	opacity: 0.8;
+}
+
+.favo-user-title {
+  position: relative;
+  padding-left: 1.2em;/*アイコン分のスペース*/
+  line-height: 1.4;
+}
+
+.favo-user-title:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f00c";/*アイコンのユニコード*/
+  position: absolute;/*絶対位置*/
+  font-size: 1em;/*サイズ*/
+  left: 0;/*アイコンの位置*/
+  top: 0;/*アイコンの位置*/
+  color: #5ab9ff; /*アイコン色*/
+}
+
+
+.favo-user-name {
+	margin-left: 20px;
+}

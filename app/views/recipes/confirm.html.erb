@@ -1,27 +1,26 @@
-<h3><strong>レシピ投稿確認</strong></h3>
-<div class="container">
+
 	<div class="row confirm-list">
+		<h3><strong>レシピ投稿確認</strong></h3>
 		<div class="col-md-4">
 			<%= attachment_image_tag @recipe, :image, size: '250x250', class: "recipe-image" %>
 		</div>
 		<div class="col-md-8">
 				<ul class="recipe-confirm">
-					<li>レシピ名 <span class="list-form"><%= @recipe.title %></span></li>
-					<li>内容 <span class="list-form"><%= @recipe.body %></span></li>
+					<li>レシピ名 <span class="recipe-show-text"><%= @recipe.title %></span></li>
+					<li>内容 <span class="recipe-show-text"><%= @recipe.body %></span></li>
 					<li>カテゴリー <span class="list-form"><%= render 'recipes/tag_list', tag_list: @recipe.category_list %></span></li>
-					<li>調理時間 <span class="list-form"><%= @recipe.time %>分</span></li>
-					<li>コスト <span class="list-form"><%= @recipe.cost %>円</span></li>
-					<li>材料 <span class="list-form"><%= @recipe.material %></span></li>
+					<li>調理時間 <span class="recipe-show-text"><%= @recipe.time %>分</span></li>
+					<li>コスト <span class="recipe-show-text"><%= @recipe.cost %>円</span></li>
+					<li>材料 <%= simple_format(@recipe.material, :class => "material-text") %></li>
 				</ul>
 		</div>
 	</div>
-</div>
-<h3><strong>作り方</strong></h3></br>
-<div class="container">
+
 	<div class="row">
+		<h3><strong>作り方</strong></h3></br>
 		<% @recipe.orders.each do |order| %>
 			<div class="col-md-3">
-				<p>手順<%= order.order_num %></p>
+				<p class="userbody-text">手順<%= order.order_num %></p>
 					<%= image_tag order.order_image.to_s %>
 					<p><%= order.order_body %></p>
 			</div>
@@ -29,5 +28,5 @@
 	</div>
 	</br>
 	<p class="recipe-btn"><%= link_to 'レシピを登録する', recipe_confirms_update_path(@recipe), method: :patch, class: 'btn btn-default' %></p>
-</div>
+
 <%#= link_to '投稿画面に戻る', new_recipe_path(@recipe) name: 'back' %>

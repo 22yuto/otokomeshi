@@ -1,23 +1,21 @@
-<div class="container">
-<h3><strong>マイページ編集</strong></h3>
-</br></br>
+
 	<div class="row">
-		<%= form_for(@user) do |f| %>
-			<div class="col-md-3">
-				<p> プロフィール画像</p>
-				<%= f.file_field :profile_image %>
-			</div>
-			<div class="col-md-3">
-				<p> ニックネーム</p>
-				<%= f.text_field :name %>
-				<p> メール</p>
-				<%= f.email_field :email %>
-			</div>
-			<div class="col-md-6">
-				<p> ひとこと</p>
-				<%= f.text_area :introduction, size: "50x5" %>
-				<%= f.submit '保存' %>
-			</div>
-		<% end %>
+		<p class="sub-title"><strong>マイページ編集</strong></p>
+</br>
+		<%= image_tag @user.profile_image.to_s, size: '200x200', :style => "border-radius: 50%;" %>
+		<div class="cp_iptxt">
+			<label class="ef">
+			<%= form_for(@user) do |f| %>
+				</br><p class="userbody-text"> プロフィール画像</p>
+				<%= f.file_field :profile_image, class: "file-image" %>
+				</br><p class="userbody-text"> ニックネーム</p>
+				<%= f.text_field :name %></br>
+				</br><p class="userbody-text"> メール</p>
+				<%= f.email_field :email, size: "40" %></br>
+				</br><p class="userbody-text"> ひとこと</p>
+				<%= f.text_area :introduction, size: "50x2" %></br>
+				</br><span class="recipe-btn"><%= f.submit '保存', class: 'btn btn-primary' %></span>
+			<% end %>
+			</label>
+		</div>
 	</div>
-</div>
