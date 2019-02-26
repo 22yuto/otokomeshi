@@ -16,7 +16,7 @@
 	    <div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
 		    <p class="poptitle"><span class="popborder">本日の漢めし</span></p>
 		    <p class="rand-title-text"><%= @random.title %></p>
-		    <%= attachment_image_tag @random, :image, fallback: 'noimage.jpg', size: '400x400', class: "recipe-image" %>
+		    <%= attachment_image_tag @random, :image, fallback: 'order_noimage.jpg', size: '400x400', class: "recipe-image" %>
 		    <%= button_to "コレに決める！", recipe_path(@random), method: :get, class:"btn-border" %>
 	  	</div>
 	  <div class="black-background" id="js-black-bg"></div>
@@ -66,7 +66,7 @@
 								<%= link_to recipe_path(recipe.id) do %>
 									<div class="first-recipe">
 										<img class="new-ranking-image" src="/assets/new6.png">
-										<p> <%= attachment_image_tag recipe, :image, fallback: 'noimage.jpg', size: '180x180', class: "recipe-image" %></p>
+										<p> <%= attachment_image_tag recipe, :image, fallback: 'order_noimage.jpg', size: '180x180', class: "recipe-image" %></p>
 								<% end %>
 									<div class="recipe-text-over">
 										<p class="new-recipe-title"> <%= recipe.title %></p>
@@ -78,7 +78,7 @@
 							<% if i >= 1 %>
 								<%= link_to recipe_path(recipe.id) do %>
 								<div class="second-image">
-									<p> <%= attachment_image_tag recipe, :image, fallback: 'noimage.jpg', size: '120x120', class: "recipe-image" %></p>
+									<p> <%= attachment_image_tag recipe, :image, fallback: 'order_noimage.jpg', size: '120x120', class: "recipe-image" %></p>
 								<% end %>
 									<div class="recipe-text-over">
 										<p class="userbody-text"> <%= recipe.title %></p>
@@ -98,7 +98,7 @@
 						<% if i == 0 %>
 							<%= link_to recipe_path(recipe.id) do %>
 							<img class="ranking-image" src="/assets/ranking2.png">
-								<p> <%= attachment_image_tag recipe, :image, fallback: 'noimage.jpg', size: '180x180', class: "first-recipe-image" %></p>
+								<p> <%= attachment_image_tag recipe, :image, fallback: 'order_noimage.jpg', size: '180x180', class: "first-recipe-image" %></p>
 							<% end %>
 							<div class="recipe-text-over">
 								<p class="new-recipe-title"> <%= recipe.title %></p>
@@ -110,7 +110,7 @@
 						<% if i >= 1 %>
 						<%= link_to recipe_path(recipe.id) do %>
 						<div class="second-image">
-							<p> <%= attachment_image_tag recipe, :image, fallback: 'noimage.jpg', size: '120x120', class: "recipe-image" %></p>
+							<p> <%= attachment_image_tag recipe, :image, fallback: 'order_noimage.jpg', size: '120x120', class: "recipe-image" %></p>
 						<% end %>
 							<div class="recipe-text-over">
 								<p class="userbody-text"> <%= recipe.title %></p>
@@ -129,7 +129,7 @@
 					<% current_user.favorites.each do |favorite| %>
 					<div class="col-md-3">
 						<%= link_to recipe_path(favorite.recipe_id) do %>
-							<p> <%= attachment_image_tag favorite.recipe, :image, fallback: 'no-image.png', size: '120x120', class: "recipe-image" %></p>
+							
 							<p class="userbody-text"> <%= favorite.recipe.title %></p>
 						<% end %>
 					</div>
@@ -143,7 +143,7 @@
 				<% current_user.followers_recipes.each do |recipe| %>
 					<div class="col-md-3">
 						<%= link_to recipe_path(recipe) do %>
-							<p> <%= attachment_image_tag recipe, :image, fallback: 'noimage.jpg', size: '120x120', class: "recipe-image" %></p>
+							<p> <%= attachment_image_tag recipe, :image, fallback: 'order_noimage.jpg', size: '120x120', class: "recipe-image" %></p>
 						<% end %>
 						<div class="recipe-text-over">
 							<p class="userbody-text"> <%= recipe.title %></p>
@@ -166,7 +166,7 @@
 						<%= link_to recipe_path(tag.id) do %>
 						<div class="row">
 							<div class="col-md-4">
-							<%= attachment_image_tag tag, :image, fallback: 'noimage.jpg', size: '90x90', class: "recipe-image" %>
+							<%= attachment_image_tag tag, :image, fallback: 'order_noimage.jpg', size: '90x90', class: "recipe-image" %>
 							</div>
 						<% end %>
 							<div class="col-md-8">
@@ -185,7 +185,7 @@
 						<%= link_to recipe_path(tag.id) do %>
 						<div class="row">
 							<div class="col-md-4">
-							<%= attachment_image_tag tag, :image, fallback: 'no-image.png', size: '90x90', class: "recipe-image" %>
+							<%= attachment_image_tag tag, :image, fallback: 'order_noimage.jpg', size: '90x90', class: "recipe-image" %>
 							</div>
 						<% end %>
 							<div class="col-md-8">
@@ -204,7 +204,7 @@
 						<%= link_to recipe_path(tag.id) do %>
 						<div class="row">
 							<div class="col-md-4">
-								<%= attachment_image_tag tag, :image, fallback: 'no-image.png', size: '90x90', class: "recipe-image" %>
+								<%= attachment_image_tag tag, :image, fallback: 'order_noimage.jpg', size: '90x90', class: "recipe-image" %>
 							</div>
 						<% end %>
 							<div class="col-md-8">
