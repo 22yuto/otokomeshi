@@ -5,7 +5,7 @@
 		<div class="col-md-3">
 			<p class="search-recipe-text"> <%= recipe.title %></p>
 			<%= link_to recipe_path(recipe.id) do %>
-				<p> <%= attachment_image_tag recipe, :image, format: 'jpg', fallback: 'noimage.jpg', size: '150x150', class: "recipe-image" %></p>
+				<p> <%= attachment_image_tag recipe, :image, format: 'jpg', fallback: '/images/noimage.jpg', size: '150x150', class: "recipe-image" %></p>
 			<% end %>
 		</div>
 		<% end %>

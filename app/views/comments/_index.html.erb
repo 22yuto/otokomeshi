@@ -3,7 +3,7 @@
       <% comments.each do |comment| %>
         <% unless comment.id.nil? %>
           <%= link_to user_path(comment.user.id) do %>
-      	    <p> <%= image_tag comment.user.profile_image.to_s, fallback: "no-image-people.png", size: "80x80", :style => "border-radius: 50%;" %></p>
+      	    <p> <%= image_tag comment.user.profile_image.to_s, fallback: "/images/no-image-people.png", size: "80x80", :style => "border-radius: 50%;" %></p>
           <% end %>
           	<p class="userbody-text">コメント：<%= comment.content %></p>
           <% if comment.user == current_user %>

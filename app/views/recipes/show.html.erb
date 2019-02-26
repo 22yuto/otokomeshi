@@ -20,10 +20,14 @@
 				</p>
 		<!-- light-box: ~~はグループ名で同名グループのイメージをpopで移動できる -->
 			<% else %>
-				<%= image_tag 'noimage.jpg', size: '220x220', :style => "border-radius: 5%;" %>
+				<%= image_tag '/images/order_noimage.jpg', size: '220x220', :style => "border-radius: 5%;" %>
 			<% end %>
 
-			<p><span class="comment-count"><i class="far fa-comment-dots"></i><%= @comments_count %></span>閲覧数: <%= @recipe.impressionist_count %></p>
+			<p>
+				<span class="comment-count">
+				<a href="#comment_target"><i class="far fa-comment-dots""></i><%= @comments_count %></a>
+				</span>閲覧数: <%= @recipe.impressionist_count %>
+			</p>
 		<% if user_signed_in? %>
 			<div id="likes_buttons_<%= @recipe.id %>">
 				<%= render partial: 'likes/like', locals: { recipe: @recipe, likes: @likes} %>
@@ -77,7 +81,7 @@
 		<% else %>
 			<% @favorite.each do |favo| %>
 				<% if favo.user_id != current_user.id %>
-					<p><%= image_tag favo.user.profile_image.to_s, fallback: "no-image-people.png", size: "80x80", :style => "border-radius: 50%;" %>
+					<p><%= image_tag favo.user.profile_image.to_s, fallback: "/images/order_noimage.jpg", size: "80x80", :style => "border-radius: 50%;" %>
 						<span class="favo-user-name"><%= favo.user.name %></span>
 					</p>
 				<% end %>
@@ -116,7 +120,7 @@
 <!-- コメント機能 -->
 
 	<div class="row">
-		<h3><strong>コメント</strong></h3>
+		<h3 id="comment_target"><strong>コメント</strong></h3>
 		    <div id="comments_area"><!-- #① -->
 		      <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
 		      <%= render partial: 'comments/index', locals: { comments: @comments } %>

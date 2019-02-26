@@ -60,7 +60,7 @@
 		<% @recipes.each do |recipe| %>
 			<div class="col-md-3">
 				<%= link_to recipe_path(recipe.id) do %>
-					<%= attachment_image_tag recipe, :image, format: 'jpg', fallback: 'noimage.jpg', size: '110x110', class: "recipe-image" %>
+					<%= attachment_image_tag recipe, :image, format: 'jpg', fallback: '/images/order_noimage.jpg', size: '110x110', class: "recipe-image" %>
 					<div class="recipe-text-over">
 						<p class="userbody-text"><%= recipe.title %></p>
 					</div>
