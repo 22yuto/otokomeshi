@@ -27,7 +27,7 @@
 
 .main-image {
   width: 100%;
-  background-image: url("oomori.jpg");
+  background-image: url("/images/oomori.jpg");
   background-size: cover;
   background-position: center;
   height: 400px;
@@ -522,4 +522,39 @@ h3 {
   box-shadow: 0 0 5px 1px rgba(218,60,65, .5);
 }
 
+
+
+
+@media screen and (max-width:425px) {
+
+  container {
+    width: 100%;
+        }
+  row {
+    width: 100%;
+        }
+
+  .logo-text {
+    margin: 0 auto;
+  }
+
+  .otokogi {
+    margin: 0 auto;
+  }
+
+  .recipe-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .first-recipe-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .second-image {
+    margin: 0 auto;
+  }
+
+}
 

@@ -24,7 +24,7 @@
 	<div class="otokogi">
 		 ボタン押下でレシピを決める!
 	<button id="js-show-popup" class="bnt-massage">
-		<img class="gogo" src="/assets/gogo.jpg">漢気CHANCE!
+		<img class="gogo" src="/images/gogo.jpg">漢気CHANCE!
 		<span>漢気チャージ中...</span>
 	</button>
 	</div>
@@ -65,7 +65,7 @@
 							<% if i == 0 %>
 								<%= link_to recipe_path(recipe.id) do %>
 									<div class="first-recipe">
-										<img class="new-ranking-image" src="/assets/new6.png">
+										<img class="new-ranking-image" src="/images/new6.png">
 										<p> <%= attachment_image_tag recipe, :image, fallback: '/images/order_noimage.jpg', size: '180x180', class: "recipe-image" %></p>
 								<% end %>
 									<div class="recipe-text-over">
@@ -97,7 +97,7 @@
 						<div class="first-like-recipe">
 						<% if i == 0 %>
 							<%= link_to recipe_path(recipe.id) do %>
-							<img class="ranking-image" src="/assets/ranking2.png">
+							<img class="ranking-image" src="/images/ranking2.png">
 								<p> <%= attachment_image_tag recipe, :image, fallback: '/images/order_noimage.jpg', size: '180x180', class: "first-recipe-image" %></p>
 							<% end %>
 							<div class="recipe-text-over">
