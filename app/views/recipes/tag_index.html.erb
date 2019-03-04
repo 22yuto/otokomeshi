@@ -1,0 +1,5 @@
+<h2><strong>タグ一覧</strong></h2>
+<% @tags.each do |tag| %>
+<%= attachment_image_tag tag, :image, fallback: '/images/order_noimage.jpg', size: '90x90', class: "recipe-image" %>
+<%= tag.title %>
+<% end %>
