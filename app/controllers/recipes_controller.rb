@@ -48,7 +48,10 @@ impressionist :actions=> [:show]
     @rice_tag_recipes = Recipe.tagged_with(["ご飯もの"]).page(params[:page]).per(2).reverse_order
     @vegetable_tag_recipes = Recipe.tagged_with(["野菜"]).page(params[:page]).per(2).reverse_order
     @soup_tag_recipes = Recipe.tagged_with(["スープ"]).page(params[:page]).per(2).reverse_order
+  end
 
+  def tag_index
+    @tags = Recipe.tagged_with(params[:tag_name])
   end
 
   def search
