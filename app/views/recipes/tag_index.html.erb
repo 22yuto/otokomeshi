@@ -1,5 +1,14 @@
-<h2><strong>タグ一覧</strong></h2>
-<% @tags.each do |tag| %>
-<%= attachment_image_tag tag, :image, fallback: '/images/order_noimage.jpg', size: '90x90', class: "recipe-image" %>
-<%= tag.title %>
-<% end %>
+<div class="row">
+	<h2><strong>タグ一覧</strong></h2>
+</br>
+		<% @tags.each do |tag| %>
+		<div class="col-md-4">
+			<p class="text-over"><%= tag.title %></p>
+				<%= link_to recipe_path(tag) do %>
+					<p><%= attachment_image_tag tag, :image, fallback: '/images/order_noimage.jpg', size: '90x90', class: "recipe-image" %>
+					</p>
+				<% end %>
+			<p><%= render 'tag_list', tag_list: tag.category_list %></p>
+		</div>
+		<% end %>
+</div>
